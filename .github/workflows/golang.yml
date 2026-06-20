@@ -32,7 +32,7 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       latest-version: ${{ steps.resolve.outputs.latest-version }}
-      matrix: ${{ steps.resolve.outputs.matrix }}
+      versions: ${{ steps.resolve.outputs.versions }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -43,7 +43,7 @@ jobs:
           result="$(.github/scripts/resolve-go-versions.sh)"
           echo "$result"
           echo "latest-version=$(echo "$result" | jq -r '.latest_version')" >> "$GITHUB_OUTPUT"
-          echo "matrix=$(echo "$result" | jq -c '.matrix')" >> "$GITHUB_OUTPUT"
+          echo "versions=$(echo "$result" | jq -c '.versions')" >> "$GITHUB_OUTPUT"
 
       - name: Persist resolved versions
         if: github.event_name != 'pull_request'
@@ -59,13 +59,20 @@ jobs:
           git push
 
   build:
-    name: Build Go ${{ matrix.version }}
+    name: Build Go ${{ matrix.version }} ${{ matrix.variant.name }}
     needs: versions
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
-        include: ${{ fromJson(needs.versions.outputs.matrix) }}
+        version: ${{ fromJson(needs.versions.outputs.versions) }}
+        variant:
+          - name: full
+            base-image: debian:bookworm-slim
+            tag-suffix: ""
+          - name: alpine
+            base-image: alpine:latest
+            tag-suffix: "-alpine"
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -78,6 +85,7 @@ jobs:
         id: tag
         run: |
           echo "minor=$(echo "${{ matrix.version }}" | cut -d. -f1,2)" >> "$GITHUB_OUTPUT"
+          echo "suffix=${{ matrix.variant['tag-suffix'] }}" >> "$GITHUB_OUTPUT"
           if [ "${{ matrix.version }}" = "${{ needs.versions.outputs.latest-version }}" ]; then
             echo "latest=true" >> "$GITHUB_OUTPUT"
           else
@@ -104,10 +112,10 @@ jobs:
         with:
           images: ${{ steps.image.outputs.name }}
           tags: |
-            type=raw,value=${{ matrix.version }}
-            type=raw,value=${{ steps.tag.outputs.minor }}
-            type=raw,value=latest,enable=${{ steps.tag.outputs.latest }}
-            type=raw,value=${{ matrix.version }},suffix=-{{sha}}
+            type=raw,value=${{ matrix.version }}${{ steps.tag.outputs.suffix }}
+            type=raw,value=${{ steps.tag.outputs.minor }}${{ steps.tag.outputs.suffix }}
+            type=raw,value=latest${{ steps.tag.outputs.suffix }},enable=${{ steps.tag.outputs.latest }}
+            type=raw,value=${{ matrix.version }}${{ steps.tag.outputs.suffix }},suffix=-{{sha}}
 
       - name: Build and publish
         uses: docker/build-push-action@v6
@@ -116,7 +124,9 @@ jobs:
           file: ./generic/golang/Dockerfile
           platforms: linux/amd64,linux/arm64
           build-args: |
+            BASE_IMAGE=${{ matrix.variant['base-image'] }}
             GO_VERSION=${{ matrix.version }}
+            IMAGE_VARIANT=${{ matrix.variant.name }}
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
