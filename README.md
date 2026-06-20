@@ -10,6 +10,7 @@ Generic Docker Images
 - [Python](docs/versions/python.md)
 - [Java](docs/versions/java.md)
 - [Rust](docs/versions/rust.md)
+- [Standalone](docs/versions/standalone.md)
 
 ## Golang
 

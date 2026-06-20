@@ -1,4 +1,4 @@
-name: Runtime images
+name: Bun.js images
 
 on:
   schedule:
@@ -8,57 +8,23 @@ on:
       - main
     paths:
       - ".github/scripts/resolve-runtime-versions.sh"
-      - ".github/scripts/resolve-all-runtime-versions.sh"
       - ".github/scripts/generate-runtime-docs.sh"
-      - ".github/scripts/generate-all-runtime-docs.sh"
-      - ".github/workflows/runtimes.yml"
+      - ".github/workflows/bun.yml"
       - "shared.sh"
       - "generic/shared.sh"
-      - "generic/node/**"
       - "generic/bun/**"
-      - "generic/deno/**"
-      - "generic/python/**"
-      - "generic/java/**"
-      - "generic/rust/**"
-      - "docs/versions/node.md"
-      - "docs/versions/node/**"
       - "docs/versions/bun.md"
       - "docs/versions/bun/**"
-      - "docs/versions/deno.md"
-      - "docs/versions/deno/**"
-      - "docs/versions/python.md"
-      - "docs/versions/python/**"
-      - "docs/versions/java.md"
-      - "docs/versions/java/**"
-      - "docs/versions/rust.md"
-      - "docs/versions/rust/**"
   pull_request:
     paths:
       - ".github/scripts/resolve-runtime-versions.sh"
-      - ".github/scripts/resolve-all-runtime-versions.sh"
       - ".github/scripts/generate-runtime-docs.sh"
-      - ".github/scripts/generate-all-runtime-docs.sh"
-      - ".github/workflows/runtimes.yml"
+      - ".github/workflows/bun.yml"
       - "shared.sh"
       - "generic/shared.sh"
-      - "generic/node/**"
       - "generic/bun/**"
-      - "generic/deno/**"
-      - "generic/python/**"
-      - "generic/java/**"
-      - "generic/rust/**"
-      - "docs/versions/node.md"
-      - "docs/versions/node/**"
       - "docs/versions/bun.md"
       - "docs/versions/bun/**"
-      - "docs/versions/deno.md"
-      - "docs/versions/deno/**"
-      - "docs/versions/python.md"
-      - "docs/versions/python/**"
-      - "docs/versions/java.md"
-      - "docs/versions/java/**"
-      - "docs/versions/rust.md"
-      - "docs/versions/rust/**"
   workflow_dispatch:
 
 permissions:
@@ -66,14 +32,14 @@ permissions:
   packages: write
 
 env:
-  IMAGE_PREFIX: ghcr.io/${{ github.repository }}
+  RUNTIME: bun
+  IMAGE_NAME: ghcr.io/${{ github.repository }}/bun
 
 jobs:
   versions:
-    name: Resolve runtime versions
+    name: Resolve Bun.js versions
     runs-on: ubuntu-latest
     outputs:
-      runtimes: ${{ steps.resolve.outputs.runtimes }}
       matrix: ${{ steps.resolve.outputs.matrix }}
     steps:
       - name: Checkout
@@ -82,31 +48,30 @@ jobs:
       - name: Resolve versions
         id: resolve
         run: |
-          result="$(.github/scripts/resolve-all-runtime-versions.sh)"
+          result="$(.github/scripts/resolve-runtime-versions.sh "$RUNTIME")"
           echo "$result"
-          echo "runtimes=$(echo "$result" | jq -c '.runtimes')" >> "$GITHUB_OUTPUT"
-          echo "matrix=$(echo "$result" | jq -c '.matrix')" >> "$GITHUB_OUTPUT"
+          echo "matrix=$(echo "$result" | jq -c '.version_matrix')" >> "$GITHUB_OUTPUT"
 
       - name: Generate version docs
-        run: .github/scripts/generate-all-runtime-docs.sh
+        run: .github/scripts/generate-runtime-docs.sh "$RUNTIME"
         env:
-          IMAGE_PREFIX: ${{ env.IMAGE_PREFIX }}
+          IMAGE_NAME: ${{ env.IMAGE_NAME }}
 
       - name: Persist resolved versions and docs
         if: github.event_name != 'pull_request'
         run: |
-          if git diff --quiet -- generic/node generic/bun generic/deno generic/python generic/java generic/rust docs/versions; then
+          if git diff --quiet -- "generic/$RUNTIME" "docs/versions/$RUNTIME.md" "docs/versions/$RUNTIME"; then
             exit 0
           fi
 
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add generic/node generic/bun generic/deno generic/python generic/java generic/rust docs/versions
-          git commit -m "Update runtime versions and docs [skip ci]"
+          git add "generic/$RUNTIME" "docs/versions/$RUNTIME.md" "docs/versions/$RUNTIME"
+          git commit -m "Update $RUNTIME versions and docs [skip ci]"
           git push
 
   build:
-    name: Build ${{ matrix.runtime }} ${{ matrix.version }} ${{ matrix.variant.name }}
+    name: Build Bun.js ${{ matrix.version }} ${{ matrix.variant.name }}
     needs: versions
     runs-on: ubuntu-latest
     strategy:
@@ -120,19 +85,19 @@ jobs:
 
       - name: Set image name
         id: image
-        run: echo "name=${IMAGE_PREFIX,,}/${{ matrix.runtime }}" >> "$GITHUB_OUTPUT"
+        run: echo "name=${IMAGE_NAME,,}" >> "$GITHUB_OUTPUT"
 
       - name: Set tag aliases
         id: tag
         run: |
           echo "suffix=${{ matrix.variant.tag_suffix }}" >> "$GITHUB_OUTPUT"
           rows='${{ needs.versions.outputs.matrix }}'
-          if [ "$(echo "$rows" | jq -r --arg runtime "${{ matrix.runtime }}" --arg version "${{ matrix.version }}" --arg name "${{ matrix.variant.name }}" 'map(select(.runtime == $runtime and .variant.name == $name))[0].version == $version')" = "true" ]; then
+          if [ "$(echo "$rows" | jq -r --arg version "${{ matrix.version }}" --arg name "${{ matrix.variant.name }}" 'map(select(.variant.name == $name))[0].version == $version')" = "true" ]; then
             echo "latest=true" >> "$GITHUB_OUTPUT"
           else
             echo "latest=false" >> "$GITHUB_OUTPUT"
           fi
-          if [ "$(echo "$rows" | jq -r --arg runtime "${{ matrix.runtime }}" --arg version "${{ matrix.version }}" --arg line "${{ matrix.line }}" --arg name "${{ matrix.variant.name }}" 'map(select(.runtime == $runtime and .line == $line and .variant.name == $name))[0].version == $version')" = "true" ]; then
+          if [ "$(echo "$rows" | jq -r --arg version "${{ matrix.version }}" --arg line "${{ matrix.line }}" --arg name "${{ matrix.variant.name }}" 'map(select(.line == $line and .variant.name == $name))[0].version == $version')" = "true" ]; then
             echo "line-latest=true" >> "$GITHUB_OUTPUT"
           else
             echo "line-latest=false" >> "$GITHUB_OUTPUT"
@@ -171,6 +136,8 @@ jobs:
           platforms: linux/amd64,linux/arm64
           build-args: |
             BASE_IMAGE=${{ matrix.variant.base_image }}
+            IMAGE_VARIANT=${{ matrix.variant.name }}
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
+

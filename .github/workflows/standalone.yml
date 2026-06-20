@@ -1,0 +1,87 @@
+name: Standalone images
+
+on:
+  schedule:
+    - cron: "0 0 * * 1"
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/standalone.yml"
+      - "shared.sh"
+      - "generic/shared.sh"
+      - "generic/standalone/**"
+      - "docs/versions/standalone.md"
+  pull_request:
+    paths:
+      - ".github/workflows/standalone.yml"
+      - "shared.sh"
+      - "generic/shared.sh"
+      - "generic/standalone/**"
+      - "docs/versions/standalone.md"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  packages: write
+
+env:
+  IMAGE_NAME: ghcr.io/${{ github.repository }}/standalone
+
+jobs:
+  build:
+    name: Build standalone ${{ matrix.variant.name }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        variant:
+          - name: full
+            base_image: debian:bookworm-slim
+            tag_suffix: ""
+          - name: alpine
+            base_image: alpine:latest
+            tag_suffix: "-alpine"
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set image name
+        id: image
+        run: echo "name=${IMAGE_NAME,,}" >> "$GITHUB_OUTPUT"
+
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Log in to GitHub Container Registry
+        if: github.event_name != 'pull_request'
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Docker metadata
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ${{ steps.image.outputs.name }}
+          tags: |
+            type=raw,value=latest${{ matrix.variant.tag_suffix }}
+            type=raw,value=latest${{ matrix.variant.tag_suffix }},suffix=-{{sha}}
+
+      - name: Build and publish
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: ./generic/standalone/Dockerfile
+          platforms: linux/amd64,linux/arm64
+          build-args: |
+            BASE_IMAGE=${{ matrix.variant.base_image }}
+            IMAGE_VARIANT=${{ matrix.variant.name }}
+          push: ${{ github.event_name != 'pull_request' }}
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
