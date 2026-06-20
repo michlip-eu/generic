@@ -16,6 +16,9 @@ CI resolves the build matrix by fetching the latest stable releases from
 `https://golang.org/dl/?mode=json`, then appending the pinned older versions in
 `generic/golang/versions.yml`.
 
+The resolver rewrites `generic/golang/versions.yml` with the discovered latest
+versions, so releases remain known after they disappear from the Go download API.
+
 Published tags:
 
 - `latest` for the newest resolved stable release
