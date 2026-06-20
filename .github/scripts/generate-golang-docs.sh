@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-set -euo pipefail
+set -eu
 
 versions_file="${VERSIONS_FILE:-generic/golang/versions.yml}"
 docs_file="${DOCS_FILE:-docs/versions/golang.md}"
@@ -28,7 +28,10 @@ versions() {
 }
 
 minor_for() {
-  printf '%s\n' "$1" | cut -d. -f1,2
+  local major minor
+
+  IFS=. read -r major minor _ <<< "$1"
+  printf '%s.%s\n' "$major" "$minor"
 }
 
 latest_for_minor() {

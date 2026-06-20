@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-set -euo pipefail
+set -eu
 
 runtime="${1:?usage: generate-runtime-docs.sh <runtime>}"
 versions_file="${VERSIONS_FILE:-generic/${runtime}/versions.yml}"
@@ -75,13 +75,16 @@ versions() {
 
 line_for() {
   local version="$1"
+  local major minor
+
+  IFS=. read -r major minor _ <<< "$version"
 
   case "$runtime" in
     node|java)
-      printf '%s\n' "$version" | cut -d. -f1
+      printf '%s\n' "$major"
       ;;
     *)
-      printf '%s\n' "$version" | cut -d. -f1,2
+      printf '%s.%s\n' "$major" "$minor"
       ;;
   esac
 }
