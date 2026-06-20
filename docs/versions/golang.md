@@ -72,35 +72,35 @@ As of 2026-06-20, the supported Go lines in this repository are
 
 | Go version | Full image tag | Alpine image tag | Alias tags | Status |
 | --- | --- | --- | --- | --- |
-| `1.26.4` | `1.26.4` | `1.26.4-alpine` | `latest`, `latest-alpine`, `1.26`, `1.26-alpine` | Current |
-| `1.25.11` | `1.25.11` | `1.25.11-alpine` | `1.25`, `1.25-alpine` | Supported |
-| `1.26.3` | `1.26.3` | `1.26.3-alpine` | None | Superseded |
-| `1.26.2` | `1.26.2` | `1.26.2-alpine` | None | Superseded |
-| `1.26.1` | `1.26.1` | `1.26.1-alpine` | None | Superseded |
-| `1.26.0` | `1.26.0` | `1.26.0-alpine` | None | Superseded |
-| `1.25.10` | `1.25.10` | `1.25.10-alpine` | None | Superseded |
-| `1.25.9` | `1.25.9` | `1.25.9-alpine` | None | Superseded |
-| `1.25.8` | `1.25.8` | `1.25.8-alpine` | None | Superseded |
-| `1.25.7` | `1.25.7` | `1.25.7-alpine` | None | Superseded |
-| `1.25.6` | `1.25.6` | `1.25.6-alpine` | None | Superseded |
-| `1.25.5` | `1.25.5` | `1.25.5-alpine` | None | Superseded |
-| `1.25.4` | `1.25.4` | `1.25.4-alpine` | None | Superseded |
-| `1.25.3` | `1.25.3` | `1.25.3-alpine` | None | Superseded |
-| `1.25.2` | `1.25.2` | `1.25.2-alpine` | None | Superseded |
-| `1.25.1` | `1.25.1` | `1.25.1-alpine` | None | Superseded |
-| `1.25.0` | `1.25.0` | `1.25.0-alpine` | None | Superseded |
-| `1.24.13` | `1.24.13` | `1.24.13-alpine` | `1.24`, `1.24-alpine` | Deprecated |
-| `1.24.12` | `1.24.12` | `1.24.12-alpine` | None | Deprecated |
-| `1.24.11` | `1.24.11` | `1.24.11-alpine` | None | Deprecated |
-| `1.24.10` | `1.24.10` | `1.24.10-alpine` | None | Deprecated |
-| `1.24.9` | `1.24.9` | `1.24.9-alpine` | None | Deprecated |
-| `1.24.3` | `1.24.3` | `1.24.3-alpine` | None | Deprecated |
-| `1.24.2` | `1.24.2` | `1.24.2-alpine` | None | Deprecated |
-| `1.24.1` | `1.24.1` | `1.24.1-alpine` | None | Deprecated |
-| `1.24.0` | `1.24.0` | `1.24.0-alpine` | None | Deprecated |
-| `1.23.12` | `1.23.12` | `1.23.12-alpine` | `1.23`, `1.23-alpine` | Deprecated |
-| `1.22.12` | `1.22.12` | `1.22.12-alpine` | `1.22`, `1.22-alpine` | Deprecated |
-| `1.21.13` | `1.21.13` | `1.21.13-alpine` | `1.21`, `1.21-alpine` | Deprecated |
+| [`1.26.4`](golang/1.26.4.md) | `1.26.4` | `1.26.4-alpine` | `latest`, `latest-alpine`, `1.26`, `1.26-alpine` | Current |
+| [`1.25.11`](golang/1.25.11.md) | `1.25.11` | `1.25.11-alpine` | `1.25`, `1.25-alpine` | Supported |
+| [`1.26.3`](golang/1.26.3.md) | `1.26.3` | `1.26.3-alpine` | None | Superseded |
+| [`1.26.2`](golang/1.26.2.md) | `1.26.2` | `1.26.2-alpine` | None | Superseded |
+| [`1.26.1`](golang/1.26.1.md) | `1.26.1` | `1.26.1-alpine` | None | Superseded |
+| [`1.26.0`](golang/1.26.0.md) | `1.26.0` | `1.26.0-alpine` | None | Superseded |
+| [`1.25.10`](golang/1.25.10.md) | `1.25.10` | `1.25.10-alpine` | None | Superseded |
+| [`1.25.9`](golang/1.25.9.md) | `1.25.9` | `1.25.9-alpine` | None | Superseded |
+| [`1.25.8`](golang/1.25.8.md) | `1.25.8` | `1.25.8-alpine` | None | Superseded |
+| [`1.25.7`](golang/1.25.7.md) | `1.25.7` | `1.25.7-alpine` | None | Superseded |
+| [`1.25.6`](golang/1.25.6.md) | `1.25.6` | `1.25.6-alpine` | None | Superseded |
+| [`1.25.5`](golang/1.25.5.md) | `1.25.5` | `1.25.5-alpine` | None | Superseded |
+| [`1.25.4`](golang/1.25.4.md) | `1.25.4` | `1.25.4-alpine` | None | Superseded |
+| [`1.25.3`](golang/1.25.3.md) | `1.25.3` | `1.25.3-alpine` | None | Superseded |
+| [`1.25.2`](golang/1.25.2.md) | `1.25.2` | `1.25.2-alpine` | None | Superseded |
+| [`1.25.1`](golang/1.25.1.md) | `1.25.1` | `1.25.1-alpine` | None | Superseded |
+| [`1.25.0`](golang/1.25.0.md) | `1.25.0` | `1.25.0-alpine` | None | Superseded |
+| [`1.24.13`](golang/1.24.13.md) | `1.24.13` | `1.24.13-alpine` | `1.24`, `1.24-alpine` | Deprecated |
+| [`1.24.12`](golang/1.24.12.md) | `1.24.12` | `1.24.12-alpine` | None | Deprecated |
+| [`1.24.11`](golang/1.24.11.md) | `1.24.11` | `1.24.11-alpine` | None | Deprecated |
+| [`1.24.10`](golang/1.24.10.md) | `1.24.10` | `1.24.10-alpine` | None | Deprecated |
+| [`1.24.9`](golang/1.24.9.md) | `1.24.9` | `1.24.9-alpine` | None | Deprecated |
+| [`1.24.3`](golang/1.24.3.md) | `1.24.3` | `1.24.3-alpine` | None | Deprecated |
+| [`1.24.2`](golang/1.24.2.md) | `1.24.2` | `1.24.2-alpine` | None | Deprecated |
+| [`1.24.1`](golang/1.24.1.md) | `1.24.1` | `1.24.1-alpine` | None | Deprecated |
+| [`1.24.0`](golang/1.24.0.md) | `1.24.0` | `1.24.0-alpine` | None | Deprecated |
+| [`1.23.12`](golang/1.23.12.md) | `1.23.12` | `1.23.12-alpine` | `1.23`, `1.23-alpine` | Deprecated |
+| [`1.22.12`](golang/1.22.12.md) | `1.22.12` | `1.22.12-alpine` | `1.22`, `1.22-alpine` | Deprecated |
+| [`1.21.13`](golang/1.21.13.md) | `1.21.13` | `1.21.13-alpine` | `1.21`, `1.21-alpine` | Deprecated |
 
 ## Build Schedule
 

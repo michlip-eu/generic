@@ -32,5 +32,5 @@ Published tags:
 - `<major>.<minor>.<patch>-<sha>` and
   `<major>.<minor>.<patch>-alpine-<sha>` for commit-specific rebuilds
 
-See `docs/versions/golang.md` for the generated version, tag, and deprecation
-list.
+See [docs/versions/golang.md](docs/versions/golang.md) for the generated
+version, tag, and deprecation list.
