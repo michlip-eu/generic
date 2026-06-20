@@ -60,9 +60,24 @@ Java images are based on Eclipse Temurin JDK tags. Prefer current or LTS lines s
 | --- | --- | --- | --- | --- |
 | [`28`](java/28.md) | `28` | `28-alpine` | `latest`, `latest-alpine`, `28`, `28-alpine` | Current |
 | [`27`](java/27.md) | `27` | `27-alpine` | `27`, `27-alpine` | Supported |
+| [`26`](java/26.md) | `26` | `26-alpine` | `26`, `26-alpine` | Deprecated |
+| [`25`](java/25.md) | `25` | `25-alpine` | `25`, `25-alpine` | Deprecated |
 | [`24`](java/24.md) | `24` | `24-alpine` | `24`, `24-alpine` | Deprecated |
+| [`23`](java/23.md) | `23` | `23-alpine` | `23`, `23-alpine` | Deprecated |
+| [`22`](java/22.md) | `22` | `22-alpine` | `22`, `22-alpine` | Deprecated |
 | [`21`](java/21.md) | `21` | `21-alpine` | `21`, `21-alpine` | Deprecated |
+| [`20`](java/20.md) | `20` | `20-alpine` | `20`, `20-alpine` | Deprecated |
+| [`19`](java/19.md) | `19` | `19-alpine` | `19`, `19-alpine` | Deprecated |
+| [`18`](java/18.md) | `18` | `18-alpine` | `18`, `18-alpine` | Deprecated |
 | [`17`](java/17.md) | `17` | `17-alpine` | `17`, `17-alpine` | Deprecated |
+| [`16`](java/16.md) | `16` | `16-alpine` | `16`, `16-alpine` | Deprecated |
+| [`15`](java/15.md) | `15` | `15-alpine` | `15`, `15-alpine` | Deprecated |
+| [`14`](java/14.md) | `14` | `14-alpine` | `14`, `14-alpine` | Deprecated |
+| [`13`](java/13.md) | `13` | `13-alpine` | `13`, `13-alpine` | Deprecated |
+| [`12`](java/12.md) | `12` | `12-alpine` | `12`, `12-alpine` | Deprecated |
+| [`11`](java/11.md) | `11` | `11-alpine` | `11`, `11-alpine` | Deprecated |
+| [`10`](java/10.md) | `10` | `10-alpine` | `10`, `10-alpine` | Deprecated |
+| [`9`](java/9.md) | `9` | `9-alpine` | `9`, `9-alpine` | Deprecated |
 
 ## Version Sources
 
