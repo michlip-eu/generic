@@ -33,7 +33,15 @@ minor_for() {
 
 latest_for_minor() {
   local minor="$1"
-  versions | awk -v minor="$minor" 'index($0, minor ".") == 1 { print; exit }'
+  local version found=""
+
+  while IFS= read -r version; do
+    if [[ -z "$found" && "$version" == "$minor".* ]]; then
+      found="$version"
+    fi
+  done < <(versions)
+
+  printf '%s\n' "$found"
 }
 
 alias_tags() {
@@ -150,9 +158,27 @@ if [[ ! -f "$versions_file" ]]; then
   exit 1
 fi
 
-latest_version="$(versions | head -n 1)"
-supported_current="$(versions | cut -d. -f1,2 | awk '!seen[$0]++' | head -n 1)"
-supported_previous="$(versions | cut -d. -f1,2 | awk '!seen[$0]++' | sed -n '2p')"
+resolved_versions=()
+while IFS= read -r version; do
+  resolved_versions+=("$version")
+done < <(versions)
+latest_version="${resolved_versions[0]:-}"
+supported_current=""
+supported_previous=""
+seen_minors="|"
+
+for version in "${resolved_versions[@]}"; do
+  minor="$(minor_for "$version")"
+  if [[ "$seen_minors" != *"|$minor|"* ]]; then
+    seen_minors="${seen_minors}${minor}|"
+    if [[ -z "$supported_current" ]]; then
+      supported_current="$minor"
+    elif [[ -z "$supported_previous" ]]; then
+      supported_previous="$minor"
+      break
+    fi
+  fi
+done
 reviewed_date="$(date -u +%F)"
 
 if [[ -z "$latest_version" || -z "$supported_current" || -z "$supported_previous" ]]; then

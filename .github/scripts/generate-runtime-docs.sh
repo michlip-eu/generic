@@ -88,12 +88,15 @@ line_for() {
 
 latest_for_line() {
   local line="$1"
-  versions | while IFS= read -r version; do
-    if [[ "$(line_for "$version")" == "$line" ]]; then
-      printf '%s\n' "$version"
-      break
+  local version found=""
+
+  while IFS= read -r version; do
+    if [[ -z "$found" && "$(line_for "$version")" == "$line" ]]; then
+      found="$version"
     fi
-  done
+  done < <(versions)
+
+  printf '%s\n' "$found"
 }
 
 alias_tags() {
@@ -205,9 +208,27 @@ if [[ ! -f "$versions_file" ]]; then
   exit 1
 fi
 
-latest_version="$(versions | head -n 1)"
-current_line="$(versions | while IFS= read -r version; do line_for "$version"; done | awk '!seen[$0]++' | head -n 1)"
-previous_line="$(versions | while IFS= read -r version; do line_for "$version"; done | awk '!seen[$0]++' | sed -n '2p')"
+resolved_versions=()
+while IFS= read -r version; do
+  resolved_versions+=("$version")
+done < <(versions)
+latest_version="${resolved_versions[0]:-}"
+current_line=""
+previous_line=""
+seen_lines="|"
+
+for version in "${resolved_versions[@]}"; do
+  line="$(line_for "$version")"
+  if [[ "$seen_lines" != *"|$line|"* ]]; then
+    seen_lines="${seen_lines}${line}|"
+    if [[ -z "$current_line" ]]; then
+      current_line="$line"
+    elif [[ -z "$previous_line" ]]; then
+      previous_line="$line"
+      break
+    fi
+  fi
+done
 generated_date="$(date -u +%F)"
 
 if [[ -z "$latest_version" || -z "$current_line" ]]; then
