@@ -66,5 +66,6 @@ Python images should generally use maintained CPython release lines. Deprecated 
 
 ## Version Sources
 
-CI refreshes this runtime from upstream git tags, then merges those discovered
-versions with pinned versions in `generic/python/versions.yml`.
+CI refreshes this runtime from every matching upstream release git tag, then
+merges those discovered versions with pinned versions in
+`generic/python/versions.yml`.

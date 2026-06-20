@@ -55,7 +55,7 @@ config() {
 
 versions() {
   awk '
-    /^[[:space:]]*older_versions[[:space:]]*:/ {
+    /^[[:space:]]*(older_versions|versions)[[:space:]]*:/ {
       in_versions = 1
       next
     }
@@ -295,7 +295,8 @@ EOF
 
 ## Version Sources
 
-CI refreshes this runtime from upstream git tags, then merges those discovered
-versions with pinned versions in \`generic/${runtime}/versions.yml\`.
+CI refreshes this runtime from every matching upstream release git tag, then
+merges those discovered versions with pinned versions in
+\`generic/${runtime}/versions.yml\`.
 EOF
 } > "$docs_file"

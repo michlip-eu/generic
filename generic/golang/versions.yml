@@ -1,6 +1,4 @@
-latest_count: 4
-
-older_versions:
+versions:
   - "1.26.4"
   - "1.25.11"
   - "1.26.3"

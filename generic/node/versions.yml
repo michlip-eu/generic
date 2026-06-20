@@ -1,6 +1,4 @@
-latest_count: 2
-
-older_versions:
+versions:
   - "26.3.1"
   - "26.3.0"
   - "24.6.0"

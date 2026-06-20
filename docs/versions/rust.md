@@ -66,5 +66,6 @@ Rust images track pinned stable Rust releases. Older versions are kept for repro
 
 ## Version Sources
 
-CI refreshes this runtime from upstream git tags, then merges those discovered
-versions with pinned versions in `generic/rust/versions.yml`.
+CI refreshes this runtime from every matching upstream release git tag, then
+merges those discovered versions with pinned versions in
+`generic/rust/versions.yml`.

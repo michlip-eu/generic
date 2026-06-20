@@ -66,5 +66,6 @@ Java images are based on Eclipse Temurin JDK tags. Prefer current or LTS lines s
 
 ## Version Sources
 
-CI refreshes this runtime from upstream git tags, then merges those discovered
-versions with pinned versions in `generic/java/versions.yml`.
+CI refreshes this runtime from every matching upstream release git tag, then
+merges those discovered versions with pinned versions in
+`generic/java/versions.yml`.

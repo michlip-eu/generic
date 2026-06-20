@@ -1,6 +1,4 @@
-latest_count: 2
-
-older_versions:
+versions:
   - "1.96.0"
   - "1.95.0"
   - "1.89.0"

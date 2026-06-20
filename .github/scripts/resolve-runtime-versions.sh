@@ -64,34 +64,13 @@ config() {
   esac
 }
 
-latest_count() {
-  if [[ ! -f "$versions_file" ]]; then
-    printf '2\n'
-    return
-  fi
-
-  awk -F: '
-    /^[[:space:]]*latest_count[[:space:]]*:/ {
-      gsub(/[[:space:]]/, "", $2)
-      print $2
-      found = 1
-      exit
-    }
-    END {
-      if (!found) {
-        print "2"
-      }
-    }
-  ' "$versions_file"
-}
-
 pinned_versions() {
   if [[ ! -f "$versions_file" ]]; then
     return
   fi
 
   awk '
-    /^[[:space:]]*older_versions[[:space:]]*:/ {
+    /^[[:space:]]*(older_versions|versions)[[:space:]]*:/ {
       in_versions = 1
       next
     }
@@ -110,15 +89,12 @@ pinned_versions() {
 }
 
 git_versions() {
-  local count="$1"
-
   git ls-remote --tags --refs "$git_repo" 2>/dev/null |
     awk '{ print $2 }' |
     grep -E "$tag_regex" |
     sed -E "$tag_sed" |
     sort -t. -k1,1nr -k2,2nr -k3,3nr |
-    awk '!seen[$0]++' |
-    head -n "$count"
+    awk '!seen[$0]++'
 }
 
 line_for() {
@@ -141,16 +117,10 @@ render_base() {
 }
 
 config
-count="${LATEST_COUNT:-$(latest_count)}"
 
-if [[ ! "$count" =~ ^[0-9]+$ ]] || [[ "$count" -lt 1 ]]; then
-  echo "latest_count must be a positive integer: $count" >&2
-  exit 1
-fi
-
-latest_versions="$(git_versions "$count" || true)"
+latest_versions="$(git_versions || true)"
 if [[ -z "$latest_versions" ]]; then
-  latest_versions="$(pinned_versions | head -n "$count")"
+  latest_versions="$(pinned_versions)"
 fi
 
 resolved_versions="$(
@@ -169,8 +139,7 @@ fi
 if [[ "$update_versions_file" == "true" ]]; then
   mkdir -p "$(dirname "$versions_file")"
   {
-    printf 'latest_count: %s\n\n' "$count"
-    printf 'older_versions:\n'
+    printf 'versions:\n'
     while IFS= read -r version; do
       [[ -n "$version" ]] || continue
       printf '  - "%s"\n' "$version"

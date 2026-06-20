@@ -66,5 +66,6 @@ Node.js odd-numbered lines are short-lived. Prefer active LTS or current even-nu
 
 ## Version Sources
 
-CI refreshes this runtime from upstream git tags, then merges those discovered
-versions with pinned versions in `generic/node/versions.yml`.
+CI refreshes this runtime from every matching upstream release git tag, then
+merges those discovered versions with pinned versions in
+`generic/node/versions.yml`.

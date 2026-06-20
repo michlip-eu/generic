@@ -9,7 +9,7 @@ details_dir="${DETAILS_DIR:-${docs_dir}/golang}"
 
 versions() {
   awk '
-    /^[[:space:]]*older_versions[[:space:]]*:/ {
+    /^[[:space:]]*(older_versions|versions)[[:space:]]*:/ {
       in_versions = 1
       next
     }
@@ -256,7 +256,7 @@ EOF
 
 CI/CD runs on pushes, pull requests, manual dispatch, and every Monday at
 00:00 UTC. The scheduled run refreshes \`generic/golang/versions.yml\` from the Go
-download API and upstream Go git tags, commits newly discovered Go versions,
-regenerates this page, and builds every pinned version and variant.
+download API and every matching upstream Go git tag, commits newly discovered Go
+versions, regenerates this page, and builds every pinned version and variant.
 EOF
 } > "$docs_file"

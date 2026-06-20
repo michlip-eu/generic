@@ -27,9 +27,9 @@ docker build -f generic/golang/Dockerfile --build-arg GO_VERSION=1.26.4 .
 docker build -f generic/golang/Dockerfile --build-arg BASE_IMAGE=alpine:latest --build-arg IMAGE_VARIANT=alpine --build-arg GO_VERSION=1.26.4 .
 ```
 
-CI resolves the build matrix by fetching the latest stable releases from
-`https://golang.org/dl/?mode=json`, merging upstream Go git tags, then appending
-the pinned older versions in `generic/golang/versions.yml`.
+CI resolves the build matrix by fetching stable releases from
+`https://golang.org/dl/?mode=json`, merging every matching upstream Go git tag,
+then appending the pinned versions in `generic/golang/versions.yml`.
 
 The resolver rewrites `generic/golang/versions.yml` with the discovered latest
 versions, so releases remain known after they disappear from the Go download API.

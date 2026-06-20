@@ -1,6 +1,4 @@
-latest_count: 2
-
-older_versions:
+versions:
   - "2.8.3"
   - "2.8.2"
   - "2.4.5"

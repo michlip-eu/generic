@@ -66,5 +66,6 @@ Bun images track pinned upstream releases. Older versions are kept for reproduci
 
 ## Version Sources
 
-CI refreshes this runtime from upstream git tags, then merges those discovered
-versions with pinned versions in `generic/bun/versions.yml`.
+CI refreshes this runtime from every matching upstream release git tag, then
+merges those discovered versions with pinned versions in
+`generic/bun/versions.yml`.

@@ -1,6 +1,4 @@
-latest_count: 2
-
-older_versions:
+versions:
   - "3.14.6"
   - "3.14.5"
   - "3.13.7"
