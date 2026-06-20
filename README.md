@@ -4,12 +4,6 @@ Generic Docker Images
 ## Runtime Docs
 
 - [Golang](docs/versions/golang.md)
-- [Node.js](docs/versions/node.md)
-- [Bun.js](docs/versions/bun.md)
-- [Deno](docs/versions/deno.md)
-- [Python](docs/versions/python.md)
-- [Java](docs/versions/java.md)
-- [Rust](docs/versions/rust.md)
 - [Standalone](docs/versions/standalone.md)
 
 ## Golang
