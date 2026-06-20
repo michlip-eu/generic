@@ -7,8 +7,11 @@ Last generated: 2026-06-20
 Images are published to:
 
 ```text
-ghcr.io/<owner>/<repo>/golang
+ghcr.io/michlip-eu/generic/golang
 ```
+
+For this repository, `ghcr.io/<owner>/<repo>/golang` resolves to
+`ghcr.io/michlip-eu/generic/golang`.
 
 The workflow builds every pinned Go version for both `linux/amd64` and
 `linux/arm64`.
@@ -25,29 +28,29 @@ The workflow builds every pinned Go version for both `linux/amd64` and
 For each exact version, CI publishes both variants:
 
 ```text
-ghcr.io/<owner>/<repo>/golang:<version>
-ghcr.io/<owner>/<repo>/golang:<version>-alpine
+ghcr.io/michlip-eu/generic/golang:<version>
+ghcr.io/michlip-eu/generic/golang:<version>-alpine
 ```
 
 The newest patch in each Go line also gets minor aliases:
 
 ```text
-ghcr.io/<owner>/<repo>/golang:<major>.<minor>
-ghcr.io/<owner>/<repo>/golang:<major>.<minor>-alpine
+ghcr.io/michlip-eu/generic/golang:<major>.<minor>
+ghcr.io/michlip-eu/generic/golang:<major>.<minor>-alpine
 ```
 
 The newest resolved stable Go version also gets latest aliases:
 
 ```text
-ghcr.io/<owner>/<repo>/golang:latest
-ghcr.io/<owner>/<repo>/golang:latest-alpine
+ghcr.io/michlip-eu/generic/golang:latest
+ghcr.io/michlip-eu/generic/golang:latest-alpine
 ```
 
 Commit-specific tags are published as:
 
 ```text
-ghcr.io/<owner>/<repo>/golang:<version>-<sha>
-ghcr.io/<owner>/<repo>/golang:<version>-alpine-<sha>
+ghcr.io/michlip-eu/generic/golang:<version>-<sha>
+ghcr.io/michlip-eu/generic/golang:<version>-alpine-<sha>
 ```
 
 ## Status Meanings

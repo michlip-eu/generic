@@ -53,6 +53,8 @@ jobs:
 
       - name: Generate version docs
         run: .github/scripts/generate-golang-docs.sh
+        env:
+          IMAGE_NAME: ${{ env.IMAGE_NAME }}
 
       - name: Persist resolved versions and docs
         if: github.event_name != 'pull_request'

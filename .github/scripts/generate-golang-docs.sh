@@ -3,6 +3,7 @@ set -euo pipefail
 
 versions_file="${VERSIONS_FILE:-generic/golang/versions.yml}"
 docs_file="${DOCS_FILE:-docs/versions/golang.md}"
+image_name="${IMAGE_NAME:-ghcr.io/michlip-eu/generic/golang}"
 
 versions() {
   awk '
@@ -96,8 +97,11 @@ Last generated: ${reviewed_date}
 Images are published to:
 
 \`\`\`text
-ghcr.io/<owner>/<repo>/golang
+${image_name}
 \`\`\`
+
+For this repository, \`ghcr.io/<owner>/<repo>/golang\` resolves to
+\`${image_name}\`.
 
 The workflow builds every pinned Go version for both \`linux/amd64\` and
 \`linux/arm64\`.
@@ -114,29 +118,29 @@ The workflow builds every pinned Go version for both \`linux/amd64\` and
 For each exact version, CI publishes both variants:
 
 \`\`\`text
-ghcr.io/<owner>/<repo>/golang:<version>
-ghcr.io/<owner>/<repo>/golang:<version>-alpine
+${image_name}:<version>
+${image_name}:<version>-alpine
 \`\`\`
 
 The newest patch in each Go line also gets minor aliases:
 
 \`\`\`text
-ghcr.io/<owner>/<repo>/golang:<major>.<minor>
-ghcr.io/<owner>/<repo>/golang:<major>.<minor>-alpine
+${image_name}:<major>.<minor>
+${image_name}:<major>.<minor>-alpine
 \`\`\`
 
 The newest resolved stable Go version also gets latest aliases:
 
 \`\`\`text
-ghcr.io/<owner>/<repo>/golang:latest
-ghcr.io/<owner>/<repo>/golang:latest-alpine
+${image_name}:latest
+${image_name}:latest-alpine
 \`\`\`
 
 Commit-specific tags are published as:
 
 \`\`\`text
-ghcr.io/<owner>/<repo>/golang:<version>-<sha>
-ghcr.io/<owner>/<repo>/golang:<version>-alpine-<sha>
+${image_name}:<version>-<sha>
+${image_name}:<version>-alpine-<sha>
 \`\`\`
 
 ## Status Meanings
