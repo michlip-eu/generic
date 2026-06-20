@@ -8,17 +8,21 @@ on:
       - main
     paths:
       - ".github/scripts/resolve-go-versions.sh"
+      - ".github/scripts/generate-golang-docs.sh"
       - ".github/workflows/golang.yml"
       - "shared.sh"
       - "generic/shared.sh"
       - "generic/golang/**"
+      - "docs/versions/golang.md"
   pull_request:
     paths:
       - ".github/scripts/resolve-go-versions.sh"
+      - ".github/scripts/generate-golang-docs.sh"
       - ".github/workflows/golang.yml"
       - "shared.sh"
       - "generic/shared.sh"
       - "generic/golang/**"
+      - "docs/versions/golang.md"
   workflow_dispatch:
 
 permissions:
@@ -47,17 +51,20 @@ jobs:
           echo "latest-version=$(echo "$result" | jq -r '.latest_version')" >> "$GITHUB_OUTPUT"
           echo "versions=$(echo "$result" | jq -c '.versions')" >> "$GITHUB_OUTPUT"
 
-      - name: Persist resolved versions
+      - name: Generate version docs
+        run: .github/scripts/generate-golang-docs.sh
+
+      - name: Persist resolved versions and docs
         if: github.event_name != 'pull_request'
         run: |
-          if git diff --quiet -- generic/golang/versions.yml; then
+          if git diff --quiet -- generic/golang/versions.yml docs/versions/golang.md; then
             exit 0
           fi
 
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add generic/golang/versions.yml
-          git commit -m "Update Go versions [skip ci]"
+          git add generic/golang/versions.yml docs/versions/golang.md
+          git commit -m "Update Go versions and docs [skip ci]"
           git push
 
   build:
@@ -88,6 +95,13 @@ jobs:
         run: |
           echo "minor=$(echo "${{ matrix.version }}" | cut -d. -f1,2)" >> "$GITHUB_OUTPUT"
           echo "suffix=${{ matrix.variant['tag-suffix'] }}" >> "$GITHUB_OUTPUT"
+          versions='${{ needs.versions.outputs.versions }}'
+          minor="$(echo "${{ matrix.version }}" | cut -d. -f1,2)"
+          if [ "$(echo "$versions" | jq -r --arg version "${{ matrix.version }}" --arg minor "$minor" 'map(select(startswith($minor + ".")))[0] == $version')" = "true" ]; then
+            echo "minor-latest=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "minor-latest=false" >> "$GITHUB_OUTPUT"
+          fi
           if [ "${{ matrix.version }}" = "${{ needs.versions.outputs.latest-version }}" ]; then
             echo "latest=true" >> "$GITHUB_OUTPUT"
           else
@@ -115,7 +129,7 @@ jobs:
           images: ${{ steps.image.outputs.name }}
           tags: |
             type=raw,value=${{ matrix.version }}${{ steps.tag.outputs.suffix }}
-            type=raw,value=${{ steps.tag.outputs.minor }}${{ steps.tag.outputs.suffix }}
+            type=raw,value=${{ steps.tag.outputs.minor }}${{ steps.tag.outputs.suffix }},enable=${{ steps.tag.outputs.minor-latest }}
             type=raw,value=latest${{ steps.tag.outputs.suffix }},enable=${{ steps.tag.outputs.latest }}
             type=raw,value=${{ matrix.version }}${{ steps.tag.outputs.suffix }},suffix=-{{sha}}
 
