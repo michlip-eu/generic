@@ -2,26 +2,24 @@
 set -euo pipefail
 
 branch="${GITHUB_REF_NAME:-main}"
-max_attempts="${PUSH_ATTEMPTS:-5}"
+retry_delay="${PUSH_RETRY_DELAY_SECONDS:-5}"
+attempt=0
 
-for ((attempt = 1; attempt <= max_attempts; attempt++)); do
+while true; do
+  attempt=$((attempt + 1))
   if git push origin "HEAD:${branch}"; then
     exit 0
   fi
 
-  if ((attempt == max_attempts)); then
-    break
-  fi
+  echo "Push failed; fetching and rebasing onto origin/${branch} (attempt ${attempt})." >&2
+  until git fetch origin "$branch"; do
+    echo "Fetch failed; retrying in ${retry_delay} seconds." >&2
+    sleep "$retry_delay"
+  done
 
-  echo "Push raced with another update; rebasing onto origin/${branch} (attempt ${attempt}/${max_attempts})." >&2
-  git fetch origin "$branch"
-  if ! git rebase "origin/${branch}"; then
+  if ! git rebase -X theirs "origin/${branch}"; then
     git rebase --abort || true
-    echo "Unable to rebase generated changes onto origin/${branch}." >&2
-    exit 1
+    echo "Rebase failed; retrying in ${retry_delay} seconds." >&2
   fi
-  sleep $((attempt * 2))
+  sleep "$retry_delay"
 done
-
-echo "Unable to push generated changes after ${max_attempts} attempts." >&2
-exit 1

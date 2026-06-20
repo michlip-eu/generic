@@ -92,10 +92,36 @@ printf '%s\n' "$resolved_versions" |
     | if length == 0 then
         error("no Go versions resolved")
       else
+        . as $versions
+        |
         {
-          versions: .,
-          latest_version: .[0],
-          matrix: map({version: .})
+          versions: $versions,
+          latest_version: $versions[0],
+          matrix: ($versions | map({version: .})),
+          version_matrix: [
+            $versions[] as $version
+            | ($version | split(".") | .[0:2] | join(".")) as $line
+            | {
+                runtime: "golang",
+                version: $version,
+                line: $line,
+                variant: {
+                  name: "full",
+                  base_image: "debian:bookworm-slim",
+                  tag_suffix: ""
+                }
+              },
+              {
+                runtime: "golang",
+                version: $version,
+                line: $line,
+                variant: {
+                  name: "alpine",
+                  base_image: "alpine:latest",
+                  tag_suffix: "-alpine"
+                }
+              }
+          ]
         }
       end
   '
