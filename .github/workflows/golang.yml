@@ -133,7 +133,7 @@ jobs:
           images: ${{ steps.image.outputs.name }}
           tags: |
             type=raw,value=${{ matrix.version }}${{ steps.tag.outputs.suffix }}
-            type=raw,value=${{ steps.tag.outputs.minor }}${{ steps.tag.outputs.suffix }},enable=${{ steps.tag.outputs.minor-latest }}
+            type=raw,value=${{ steps.tag.outputs.minor }}${{ steps.tag.outputs.suffix }},enable=${{ steps.tag.outputs['minor-latest'] }}
             type=raw,value=latest${{ steps.tag.outputs.suffix }},enable=${{ steps.tag.outputs.latest }}
             type=raw,value=${{ matrix.version }}${{ steps.tag.outputs.suffix }},suffix=-{{sha}}
 

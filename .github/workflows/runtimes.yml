@@ -1,0 +1,175 @@
+name: Runtime images
+
+on:
+  schedule:
+    - cron: "0 0 * * 1"
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/scripts/resolve-runtime-versions.sh"
+      - ".github/scripts/resolve-all-runtime-versions.sh"
+      - ".github/scripts/generate-runtime-docs.sh"
+      - ".github/scripts/generate-all-runtime-docs.sh"
+      - ".github/workflows/runtimes.yml"
+      - "shared.sh"
+      - "generic/shared.sh"
+      - "generic/node/**"
+      - "generic/bun/**"
+      - "generic/deno/**"
+      - "generic/python/**"
+      - "generic/java/**"
+      - "generic/rust/**"
+      - "docs/versions/node.md"
+      - "docs/versions/node/**"
+      - "docs/versions/bun.md"
+      - "docs/versions/bun/**"
+      - "docs/versions/deno.md"
+      - "docs/versions/deno/**"
+      - "docs/versions/python.md"
+      - "docs/versions/python/**"
+      - "docs/versions/java.md"
+      - "docs/versions/java/**"
+      - "docs/versions/rust.md"
+      - "docs/versions/rust/**"
+  pull_request:
+    paths:
+      - ".github/scripts/resolve-runtime-versions.sh"
+      - ".github/scripts/resolve-all-runtime-versions.sh"
+      - ".github/scripts/generate-runtime-docs.sh"
+      - ".github/scripts/generate-all-runtime-docs.sh"
+      - ".github/workflows/runtimes.yml"
+      - "shared.sh"
+      - "generic/shared.sh"
+      - "generic/node/**"
+      - "generic/bun/**"
+      - "generic/deno/**"
+      - "generic/python/**"
+      - "generic/java/**"
+      - "generic/rust/**"
+      - "docs/versions/node.md"
+      - "docs/versions/node/**"
+      - "docs/versions/bun.md"
+      - "docs/versions/bun/**"
+      - "docs/versions/deno.md"
+      - "docs/versions/deno/**"
+      - "docs/versions/python.md"
+      - "docs/versions/python/**"
+      - "docs/versions/java.md"
+      - "docs/versions/java/**"
+      - "docs/versions/rust.md"
+      - "docs/versions/rust/**"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  packages: write
+
+env:
+  IMAGE_PREFIX: ghcr.io/${{ github.repository }}
+
+jobs:
+  versions:
+    name: Resolve runtime versions
+    runs-on: ubuntu-latest
+    outputs:
+      runtimes: ${{ steps.resolve.outputs.runtimes }}
+      matrix: ${{ steps.resolve.outputs.matrix }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Resolve versions
+        id: resolve
+        run: |
+          result="$(.github/scripts/resolve-all-runtime-versions.sh)"
+          echo "$result"
+          echo "runtimes=$(echo "$result" | jq -c '.runtimes')" >> "$GITHUB_OUTPUT"
+          echo "matrix=$(echo "$result" | jq -c '.matrix')" >> "$GITHUB_OUTPUT"
+
+      - name: Generate version docs
+        run: .github/scripts/generate-all-runtime-docs.sh
+        env:
+          IMAGE_PREFIX: ${{ env.IMAGE_PREFIX }}
+
+      - name: Persist resolved versions and docs
+        if: github.event_name != 'pull_request'
+        run: |
+          if git diff --quiet -- generic/node generic/bun generic/deno generic/python generic/java generic/rust docs/versions; then
+            exit 0
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add generic/node generic/bun generic/deno generic/python generic/java generic/rust docs/versions
+          git commit -m "Update runtime versions and docs [skip ci]"
+          git push
+
+  build:
+    name: Build ${{ matrix.runtime }} ${{ matrix.version }} ${{ matrix.variant.name }}
+    needs: versions
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include: ${{ fromJson(needs.versions.outputs.matrix) }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set image name
+        id: image
+        run: echo "name=${IMAGE_PREFIX,,}/${{ matrix.runtime }}" >> "$GITHUB_OUTPUT"
+
+      - name: Set tag aliases
+        id: tag
+        run: |
+          echo "suffix=${{ matrix.variant.tag_suffix }}" >> "$GITHUB_OUTPUT"
+          rows='${{ needs.versions.outputs.matrix }}'
+          if [ "$(echo "$rows" | jq -r --arg runtime "${{ matrix.runtime }}" --arg version "${{ matrix.version }}" --arg name "${{ matrix.variant.name }}" 'map(select(.runtime == $runtime and .variant.name == $name))[0].version == $version')" = "true" ]; then
+            echo "latest=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "latest=false" >> "$GITHUB_OUTPUT"
+          fi
+          if [ "$(echo "$rows" | jq -r --arg runtime "${{ matrix.runtime }}" --arg version "${{ matrix.version }}" --arg line "${{ matrix.line }}" --arg name "${{ matrix.variant.name }}" 'map(select(.runtime == $runtime and .line == $line and .variant.name == $name))[0].version == $version')" = "true" ]; then
+            echo "line-latest=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "line-latest=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Log in to GitHub Container Registry
+        if: github.event_name != 'pull_request'
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Docker metadata
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ${{ steps.image.outputs.name }}
+          tags: |
+            type=raw,value=${{ matrix.version }}${{ steps.tag.outputs.suffix }}
+            type=raw,value=${{ matrix.line }}${{ steps.tag.outputs.suffix }},enable=${{ steps.tag.outputs['line-latest'] }}
+            type=raw,value=latest${{ steps.tag.outputs.suffix }},enable=${{ steps.tag.outputs.latest }}
+            type=raw,value=${{ matrix.version }}${{ steps.tag.outputs.suffix }},suffix=-{{sha}}
+
+      - name: Build and publish
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: ./generic/${{ matrix.runtime }}/Dockerfile
+          platforms: linux/amd64,linux/arm64
+          build-args: |
+            BASE_IMAGE=${{ matrix.variant.base_image }}
+          push: ${{ github.event_name != 'pull_request' }}
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}

@@ -255,8 +255,8 @@ EOF
 ## Build Schedule
 
 CI/CD runs on pushes, pull requests, manual dispatch, and every Monday at
-00:00 UTC. The scheduled run refreshes \`generic/golang/versions.yml\`, commits
-newly discovered Go versions, regenerates this page, and builds every pinned
-version and variant.
+00:00 UTC. The scheduled run refreshes \`generic/golang/versions.yml\` from the Go
+download API and upstream Go git tags, commits newly discovered Go versions,
+regenerates this page, and builds every pinned version and variant.
 EOF
 } > "$docs_file"

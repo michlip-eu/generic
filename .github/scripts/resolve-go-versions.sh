@@ -2,10 +2,12 @@
 set -euo pipefail
 
 readonly DEFAULT_RELEASES_URL="https://golang.org/dl/?mode=json"
+readonly DEFAULT_GIT_TAGS_URL="https://github.com/golang/go.git"
 readonly DEFAULT_LATEST_COUNT="2"
 
 versions_file="${VERSIONS_FILE:-generic/golang/versions.yml}"
 releases_url="${GO_RELEASES_URL:-$DEFAULT_RELEASES_URL}"
+git_tags_url="${GO_GIT_TAGS_URL:-$DEFAULT_GIT_TAGS_URL}"
 update_versions_file="${UPDATE_VERSIONS_FILE:-true}"
 
 normalize_go_version() {
@@ -64,6 +66,18 @@ older_versions() {
   ' "$versions_file"
 }
 
+git_versions() {
+  local count="$1"
+
+  git ls-remote --tags --refs "$git_tags_url" 2>/dev/null |
+    awk '{ print $2 }' |
+    grep -E '^refs/tags/go[0-9]+\.[0-9]+\.[0-9]+$' |
+    sed -E 's#^refs/tags/go##' |
+    sort -t. -k1,1nr -k2,2nr -k3,3nr |
+    awk '!seen[$0]++' |
+    head -n "$count"
+}
+
 count="${LATEST_GO_COUNT:-$(latest_count)}"
 
 if [[ ! "$count" =~ ^[0-9]+$ ]] || [[ "$count" -lt 1 ]]; then
@@ -72,15 +86,17 @@ if [[ ! "$count" =~ ^[0-9]+$ ]] || [[ "$count" -lt 1 ]]; then
 fi
 
 current_versions="$(
-  curl -fsSL "$releases_url" |
+  curl -fsSL "$releases_url" 2>/dev/null |
     jq -r --argjson count "$count" '
       [.[] | select(.stable == true) | .version][0:$count][]
-    '
+    ' || true
 )"
+tag_versions="$(git_versions "$count" || true)"
 
 resolved_versions="$(
   {
     printf '%s\n' "$current_versions"
+    printf '%s\n' "$tag_versions"
     older_versions
   } |
     while IFS= read -r version; do

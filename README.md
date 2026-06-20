@@ -1,6 +1,16 @@
 # generic
 Generic Docker Images
 
+## Runtime Docs
+
+- [Golang](docs/versions/golang.md)
+- [Node.js](docs/versions/node.md)
+- [Bun.js](docs/versions/bun.md)
+- [Deno](docs/versions/deno.md)
+- [Python](docs/versions/python.md)
+- [Java](docs/versions/java.md)
+- [Rust](docs/versions/rust.md)
+
 ## Golang
 
 The Golang image builds from `generic/golang/Dockerfile` in two variants:
@@ -18,8 +28,8 @@ docker build -f generic/golang/Dockerfile --build-arg BASE_IMAGE=alpine:latest -
 ```
 
 CI resolves the build matrix by fetching the latest stable releases from
-`https://golang.org/dl/?mode=json`, then appending the pinned older versions in
-`generic/golang/versions.yml`.
+`https://golang.org/dl/?mode=json`, merging upstream Go git tags, then appending
+the pinned older versions in `generic/golang/versions.yml`.
 
 The resolver rewrites `generic/golang/versions.yml` with the discovered latest
 versions, so releases remain known after they disappear from the Go download API.

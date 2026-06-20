@@ -44,8 +44,8 @@ config() {
     java)
       display_name="Java"
       git_repo="https://github.com/openjdk/jdk.git"
-      tag_regex='^refs/tags/jdk-[0-9]+(\.[0-9]+){0,2}\+[0-9]+$'
-      tag_sed='s#^refs/tags/jdk-##; s#+.*$##'
+      tag_regex='^refs/tags/jdk-[0-9]+\+[0-9]+$'
+      tag_sed='s#^refs/tags/jdk-##; s#\+.*$##'
       full_base='eclipse-temurin:${version}-jdk-jammy'
       alpine_base='eclipse-temurin:${version}-jdk-alpine'
       ;;
@@ -116,9 +116,22 @@ git_versions() {
     awk '{ print $2 }' |
     grep -E "$tag_regex" |
     sed -E "$tag_sed" |
-    sort -Vr |
+    sort -t. -k1,1nr -k2,2nr -k3,3nr |
     awk '!seen[$0]++' |
     head -n "$count"
+}
+
+line_for() {
+  local version="$1"
+
+  case "$runtime" in
+    node|java)
+      printf '%s\n' "$version" | cut -d. -f1
+      ;;
+    *)
+      printf '%s\n' "$version" | cut -d. -f1,2
+      ;;
+  esac
 }
 
 render_base() {
@@ -182,15 +195,17 @@ fi
     jq -n \
       --arg runtime "$runtime" \
       --arg version "$version" \
+      --arg line "$(line_for "$version")" \
       --arg full_base "$(render_base "$full_base" "$version")" \
       --arg alpine_base "$(render_base "$alpine_base" "$version")" \
       '{
         runtime: $runtime,
         version: $version,
+        line: $line,
         variants: [
           {name: "full", base_image: $full_base, tag_suffix: ""},
           {name: "alpine", base_image: $alpine_base, tag_suffix: "-alpine"}
         ]
       }'
-  done <<< "$resolved_versions" | jq -s '{version_matrix: map(. as $row | $row.variants[] | {runtime: $row.runtime, version: $row.version, variant: .})}'
+  done <<< "$resolved_versions" | jq -s '{version_matrix: map(. as $row | $row.variants[] | {runtime: $row.runtime, version: $row.version, line: $row.line, variant: .})}'
 } | jq -s '.[0] + .[1]'

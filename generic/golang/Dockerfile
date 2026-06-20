@@ -12,22 +12,13 @@ COPY generic/golang/shared.sh /tmp/shared/golang.sh
 
 RUN set -eux; \
     if command -v apk >/dev/null 2>&1; then \
-      apk add --no-cache bash ca-certificates wget tar; \
-      if [ "${IMAGE_VARIANT}" = "full" ]; then \
-        apk add --no-cache build-base curl git make openssh-client pkgconf; \
-      fi; \
-    elif command -v apt-get >/dev/null 2>&1; then \
-      apt-get update; \
-      apt-get install -y --no-install-recommends bash ca-certificates wget tar; \
-      if [ "${IMAGE_VARIANT}" = "full" ]; then \
-        apt-get install -y --no-install-recommends curl g++ gcc git libc6-dev make openssh-client pkg-config; \
-      fi; \
-      rm -rf /var/lib/apt/lists/*; \
+      export GENERIC_ADDITIONAL_PACKAGES="wget tar"; \
+      export GENERIC_ADDITIONAL_FULL_PACKAGES="build-base curl git make openssh-client pkgconf"; \
     else \
-      echo "unsupported base image package manager" >&2; \
-      exit 1; \
+      export GENERIC_ADDITIONAL_PACKAGES="wget tar"; \
+      export GENERIC_ADDITIONAL_FULL_PACKAGES="curl g++ gcc git libc6-dev make openssh-client pkg-config"; \
     fi; \
-    bash /tmp/shared/root.sh; \
+    sh /tmp/shared/root.sh; \
     bash /tmp/shared/generic.sh; \
     bash /tmp/shared/golang.sh; \
     if [ -z "${TARGETARCH}" ]; then \
