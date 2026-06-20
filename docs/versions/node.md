@@ -17,8 +17,8 @@ and `linux/arm64`.
 
 | Variant | Base image pattern | Tags | Contents |
 | --- | --- | --- | --- |
-| `full` | `node:<version>-bookworm-slim` | `latest`, `24`, `24.6.0` | Official runtime image with Debian or default upstream tooling. |
-| `alpine` | `node:<version>-alpine` | `latest-alpine`, `24-alpine`, `24.6.0-alpine` | Official Alpine runtime image where upstream publishes one. |
+| `full` | `node:<version>-bookworm-slim` | `latest`, `26`, `26.3.1` | Official runtime image with Debian or default upstream tooling. |
+| `alpine` | `node:<version>-alpine` | `latest-alpine`, `26-alpine`, `26.3.1-alpine` | Official Alpine runtime image where upstream publishes one. |
 
 ## Tag Rules
 
@@ -58,8 +58,10 @@ Node.js odd-numbered lines are short-lived. Prefer active LTS or current even-nu
 
 | Version | Full image tag | Alpine image tag | Alias tags | Status |
 | --- | --- | --- | --- | --- |
-| [`24.6.0`](node/24.6.0.md) | `24.6.0` | `24.6.0-alpine` | `latest`, `latest-alpine`, `24`, `24-alpine` | Current |
-| [`22.18.0`](node/22.18.0.md) | `22.18.0` | `22.18.0-alpine` | `22`, `22-alpine` | Supported |
+| [`26.3.1`](node/26.3.1.md) | `26.3.1` | `26.3.1-alpine` | `latest`, `latest-alpine`, `26`, `26-alpine` | Current |
+| [`26.3.0`](node/26.3.0.md) | `26.3.0` | `26.3.0-alpine` | None | Superseded |
+| [`24.6.0`](node/24.6.0.md) | `24.6.0` | `24.6.0-alpine` | `24`, `24-alpine` | Supported |
+| [`22.18.0`](node/22.18.0.md) | `22.18.0` | `22.18.0-alpine` | `22`, `22-alpine` | Deprecated |
 | [`20.19.4`](node/20.19.4.md) | `20.19.4` | `20.19.4-alpine` | `20`, `20-alpine` | Deprecated |
 
 ## Version Sources

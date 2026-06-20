@@ -17,8 +17,8 @@ and `linux/arm64`.
 
 | Variant | Base image pattern | Tags | Contents |
 | --- | --- | --- | --- |
-| `full` | `eclipse-temurin:<version>-jdk-jammy` | `latest`, `24`, `24` | Official runtime image with Debian or default upstream tooling. |
-| `alpine` | `eclipse-temurin:<version>-jdk-alpine` | `latest-alpine`, `24-alpine`, `24-alpine` | Official Alpine runtime image where upstream publishes one. |
+| `full` | `eclipse-temurin:<version>-jdk-jammy` | `latest`, `28`, `28` | Official runtime image with Debian or default upstream tooling. |
+| `alpine` | `eclipse-temurin:<version>-jdk-alpine` | `latest-alpine`, `28-alpine`, `28-alpine` | Official Alpine runtime image where upstream publishes one. |
 
 ## Tag Rules
 
@@ -58,8 +58,10 @@ Java images are based on Eclipse Temurin JDK tags. Prefer current or LTS lines s
 
 | Version | Full image tag | Alpine image tag | Alias tags | Status |
 | --- | --- | --- | --- | --- |
-| [`24`](java/24.md) | `24` | `24-alpine` | `latest`, `latest-alpine`, `24`, `24-alpine` | Current |
-| [`21`](java/21.md) | `21` | `21-alpine` | `21`, `21-alpine` | Supported |
+| [`28`](java/28.md) | `28` | `28-alpine` | `latest`, `latest-alpine`, `28`, `28-alpine` | Current |
+| [`27`](java/27.md) | `27` | `27-alpine` | `27`, `27-alpine` | Supported |
+| [`24`](java/24.md) | `24` | `24-alpine` | `24`, `24-alpine` | Deprecated |
+| [`21`](java/21.md) | `21` | `21-alpine` | `21`, `21-alpine` | Deprecated |
 | [`17`](java/17.md) | `17` | `17-alpine` | `17`, `17-alpine` | Deprecated |
 
 ## Version Sources

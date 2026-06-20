@@ -17,8 +17,8 @@ and `linux/arm64`.
 
 | Variant | Base image pattern | Tags | Contents |
 | --- | --- | --- | --- |
-| `full` | `denoland/deno:debian-<version>` | `latest`, `2.4`, `2.4.5` | Official runtime image with Debian or default upstream tooling. |
-| `alpine` | `denoland/deno:alpine-<version>` | `latest-alpine`, `2.4-alpine`, `2.4.5-alpine` | Official Alpine runtime image where upstream publishes one. |
+| `full` | `denoland/deno:debian-<version>` | `latest`, `2.8`, `2.8.3` | Official runtime image with Debian or default upstream tooling. |
+| `alpine` | `denoland/deno:alpine-<version>` | `latest-alpine`, `2.8-alpine`, `2.8.3-alpine` | Official Alpine runtime image where upstream publishes one. |
 
 ## Tag Rules
 
@@ -58,9 +58,11 @@ Deno images track pinned upstream releases. Older versions are kept for reproduc
 
 | Version | Full image tag | Alpine image tag | Alias tags | Status |
 | --- | --- | --- | --- | --- |
-| [`2.4.5`](deno/2.4.5.md) | `2.4.5` | `2.4.5-alpine` | `latest`, `latest-alpine`, `2.4`, `2.4-alpine` | Current |
+| [`2.8.3`](deno/2.8.3.md) | `2.8.3` | `2.8.3-alpine` | `latest`, `latest-alpine`, `2.8`, `2.8-alpine` | Current |
+| [`2.8.2`](deno/2.8.2.md) | `2.8.2` | `2.8.2-alpine` | None | Superseded |
+| [`2.4.5`](deno/2.4.5.md) | `2.4.5` | `2.4.5-alpine` | `2.4`, `2.4-alpine` | Supported |
 | [`2.4.4`](deno/2.4.4.md) | `2.4.4` | `2.4.4-alpine` | None | Superseded |
-| [`2.3.7`](deno/2.3.7.md) | `2.3.7` | `2.3.7-alpine` | `2.3`, `2.3-alpine` | Supported |
+| [`2.3.7`](deno/2.3.7.md) | `2.3.7` | `2.3.7-alpine` | `2.3`, `2.3-alpine` | Deprecated |
 
 ## Version Sources
 

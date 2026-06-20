@@ -1,6 +1,8 @@
 latest_count: 2
 
 older_versions:
+  - "28"
+  - "27"
   - "24"
   - "21"
   - "17"

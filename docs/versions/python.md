@@ -17,8 +17,8 @@ and `linux/arm64`.
 
 | Variant | Base image pattern | Tags | Contents |
 | --- | --- | --- | --- |
-| `full` | `python:<version>-slim-bookworm` | `latest`, `3.13`, `3.13.7` | Official runtime image with Debian or default upstream tooling. |
-| `alpine` | `python:<version>-alpine` | `latest-alpine`, `3.13-alpine`, `3.13.7-alpine` | Official Alpine runtime image where upstream publishes one. |
+| `full` | `python:<version>-slim-bookworm` | `latest`, `3.14`, `3.14.6` | Official runtime image with Debian or default upstream tooling. |
+| `alpine` | `python:<version>-alpine` | `latest-alpine`, `3.14-alpine`, `3.14.6-alpine` | Official Alpine runtime image where upstream publishes one. |
 
 ## Tag Rules
 
@@ -58,8 +58,10 @@ Python images should generally use maintained CPython release lines. Deprecated 
 
 | Version | Full image tag | Alpine image tag | Alias tags | Status |
 | --- | --- | --- | --- | --- |
-| [`3.13.7`](python/3.13.7.md) | `3.13.7` | `3.13.7-alpine` | `latest`, `latest-alpine`, `3.13`, `3.13-alpine` | Current |
-| [`3.12.11`](python/3.12.11.md) | `3.12.11` | `3.12.11-alpine` | `3.12`, `3.12-alpine` | Supported |
+| [`3.14.6`](python/3.14.6.md) | `3.14.6` | `3.14.6-alpine` | `latest`, `latest-alpine`, `3.14`, `3.14-alpine` | Current |
+| [`3.14.5`](python/3.14.5.md) | `3.14.5` | `3.14.5-alpine` | None | Superseded |
+| [`3.13.7`](python/3.13.7.md) | `3.13.7` | `3.13.7-alpine` | `3.13`, `3.13-alpine` | Supported |
+| [`3.12.11`](python/3.12.11.md) | `3.12.11` | `3.12.11-alpine` | `3.12`, `3.12-alpine` | Deprecated |
 | [`3.11.13`](python/3.11.13.md) | `3.11.13` | `3.11.13-alpine` | `3.11`, `3.11-alpine` | Deprecated |
 
 ## Version Sources

@@ -17,8 +17,8 @@ and `linux/arm64`.
 
 | Variant | Base image pattern | Tags | Contents |
 | --- | --- | --- | --- |
-| `full` | `oven/bun:<version>` | `latest`, `1.2`, `1.2.21` | Official runtime image with Debian or default upstream tooling. |
-| `alpine` | `oven/bun:<version>-alpine` | `latest-alpine`, `1.2-alpine`, `1.2.21-alpine` | Official Alpine runtime image where upstream publishes one. |
+| `full` | `oven/bun:<version>` | `latest`, `1.3`, `1.3.14` | Official runtime image with Debian or default upstream tooling. |
+| `alpine` | `oven/bun:<version>-alpine` | `latest-alpine`, `1.3-alpine`, `1.3.14-alpine` | Official Alpine runtime image where upstream publishes one. |
 
 ## Tag Rules
 
@@ -58,9 +58,11 @@ Bun images track pinned upstream releases. Older versions are kept for reproduci
 
 | Version | Full image tag | Alpine image tag | Alias tags | Status |
 | --- | --- | --- | --- | --- |
-| [`1.2.21`](bun/1.2.21.md) | `1.2.21` | `1.2.21-alpine` | `latest`, `latest-alpine`, `1.2`, `1.2-alpine` | Current |
+| [`1.3.14`](bun/1.3.14.md) | `1.3.14` | `1.3.14-alpine` | `latest`, `latest-alpine`, `1.3`, `1.3-alpine` | Current |
+| [`1.3.13`](bun/1.3.13.md) | `1.3.13` | `1.3.13-alpine` | None | Superseded |
+| [`1.2.21`](bun/1.2.21.md) | `1.2.21` | `1.2.21-alpine` | `1.2`, `1.2-alpine` | Supported |
 | [`1.2.20`](bun/1.2.20.md) | `1.2.20` | `1.2.20-alpine` | None | Superseded |
-| [`1.1.45`](bun/1.1.45.md) | `1.1.45` | `1.1.45-alpine` | `1.1`, `1.1-alpine` | Supported |
+| [`1.1.45`](bun/1.1.45.md) | `1.1.45` | `1.1.45-alpine` | `1.1`, `1.1-alpine` | Deprecated |
 
 ## Version Sources
 

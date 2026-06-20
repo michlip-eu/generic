@@ -17,8 +17,8 @@ and `linux/arm64`.
 
 | Variant | Base image pattern | Tags | Contents |
 | --- | --- | --- | --- |
-| `full` | `rust:<version>-bookworm` | `latest`, `1.89`, `1.89.0` | Official runtime image with Debian or default upstream tooling. |
-| `alpine` | `rust:<version>-alpine` | `latest-alpine`, `1.89-alpine`, `1.89.0-alpine` | Official Alpine runtime image where upstream publishes one. |
+| `full` | `rust:<version>-bookworm` | `latest`, `1.96`, `1.96.0` | Official runtime image with Debian or default upstream tooling. |
+| `alpine` | `rust:<version>-alpine` | `latest-alpine`, `1.96-alpine`, `1.96.0-alpine` | Official Alpine runtime image where upstream publishes one. |
 
 ## Tag Rules
 
@@ -58,8 +58,10 @@ Rust images track pinned stable Rust releases. Older versions are kept for repro
 
 | Version | Full image tag | Alpine image tag | Alias tags | Status |
 | --- | --- | --- | --- | --- |
-| [`1.89.0`](rust/1.89.0.md) | `1.89.0` | `1.89.0-alpine` | `latest`, `latest-alpine`, `1.89`, `1.89-alpine` | Current |
-| [`1.88.0`](rust/1.88.0.md) | `1.88.0` | `1.88.0-alpine` | `1.88`, `1.88-alpine` | Supported |
+| [`1.96.0`](rust/1.96.0.md) | `1.96.0` | `1.96.0-alpine` | `latest`, `latest-alpine`, `1.96`, `1.96-alpine` | Current |
+| [`1.95.0`](rust/1.95.0.md) | `1.95.0` | `1.95.0-alpine` | `1.95`, `1.95-alpine` | Supported |
+| [`1.89.0`](rust/1.89.0.md) | `1.89.0` | `1.89.0-alpine` | `1.89`, `1.89-alpine` | Deprecated |
+| [`1.88.0`](rust/1.88.0.md) | `1.88.0` | `1.88.0-alpine` | `1.88`, `1.88-alpine` | Deprecated |
 | [`1.87.0`](rust/1.87.0.md) | `1.87.0` | `1.87.0-alpine` | `1.87`, `1.87-alpine` | Deprecated |
 
 ## Version Sources
