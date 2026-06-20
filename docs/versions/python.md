@@ -60,9 +60,260 @@ Python images should generally use maintained CPython release lines. Deprecated 
 | --- | --- | --- | --- | --- |
 | [`3.14.6`](python/3.14.6.md) | `3.14.6` | `3.14.6-alpine` | `latest`, `latest-alpine`, `3.14`, `3.14-alpine` | Current |
 | [`3.14.5`](python/3.14.5.md) | `3.14.5` | `3.14.5-alpine` | None | Superseded |
-| [`3.13.7`](python/3.13.7.md) | `3.13.7` | `3.13.7-alpine` | `3.13`, `3.13-alpine` | Supported |
-| [`3.12.11`](python/3.12.11.md) | `3.12.11` | `3.12.11-alpine` | `3.12`, `3.12-alpine` | Deprecated |
-| [`3.11.13`](python/3.11.13.md) | `3.11.13` | `3.11.13-alpine` | `3.11`, `3.11-alpine` | Deprecated |
+| [`3.14.4`](python/3.14.4.md) | `3.14.4` | `3.14.4-alpine` | None | Superseded |
+| [`3.14.3`](python/3.14.3.md) | `3.14.3` | `3.14.3-alpine` | None | Superseded |
+| [`3.14.2`](python/3.14.2.md) | `3.14.2` | `3.14.2-alpine` | None | Superseded |
+| [`3.14.1`](python/3.14.1.md) | `3.14.1` | `3.14.1-alpine` | None | Superseded |
+| [`3.14.0`](python/3.14.0.md) | `3.14.0` | `3.14.0-alpine` | None | Superseded |
+| [`3.13.14`](python/3.13.14.md) | `3.13.14` | `3.13.14-alpine` | `3.13`, `3.13-alpine` | Supported |
+| [`3.13.13`](python/3.13.13.md) | `3.13.13` | `3.13.13-alpine` | None | Superseded |
+| [`3.13.12`](python/3.13.12.md) | `3.13.12` | `3.13.12-alpine` | None | Superseded |
+| [`3.13.11`](python/3.13.11.md) | `3.13.11` | `3.13.11-alpine` | None | Superseded |
+| [`3.13.10`](python/3.13.10.md) | `3.13.10` | `3.13.10-alpine` | None | Superseded |
+| [`3.13.9`](python/3.13.9.md) | `3.13.9` | `3.13.9-alpine` | None | Superseded |
+| [`3.13.8`](python/3.13.8.md) | `3.13.8` | `3.13.8-alpine` | None | Superseded |
+| [`3.13.7`](python/3.13.7.md) | `3.13.7` | `3.13.7-alpine` | None | Superseded |
+| [`3.13.6`](python/3.13.6.md) | `3.13.6` | `3.13.6-alpine` | None | Superseded |
+| [`3.13.5`](python/3.13.5.md) | `3.13.5` | `3.13.5-alpine` | None | Superseded |
+| [`3.13.4`](python/3.13.4.md) | `3.13.4` | `3.13.4-alpine` | None | Superseded |
+| [`3.13.3`](python/3.13.3.md) | `3.13.3` | `3.13.3-alpine` | None | Superseded |
+| [`3.13.2`](python/3.13.2.md) | `3.13.2` | `3.13.2-alpine` | None | Superseded |
+| [`3.13.1`](python/3.13.1.md) | `3.13.1` | `3.13.1-alpine` | None | Superseded |
+| [`3.13.0`](python/3.13.0.md) | `3.13.0` | `3.13.0-alpine` | None | Superseded |
+| [`3.12.13`](python/3.12.13.md) | `3.12.13` | `3.12.13-alpine` | `3.12`, `3.12-alpine` | Deprecated |
+| [`3.12.12`](python/3.12.12.md) | `3.12.12` | `3.12.12-alpine` | None | Deprecated |
+| [`3.12.11`](python/3.12.11.md) | `3.12.11` | `3.12.11-alpine` | None | Deprecated |
+| [`3.12.10`](python/3.12.10.md) | `3.12.10` | `3.12.10-alpine` | None | Deprecated |
+| [`3.12.9`](python/3.12.9.md) | `3.12.9` | `3.12.9-alpine` | None | Deprecated |
+| [`3.12.8`](python/3.12.8.md) | `3.12.8` | `3.12.8-alpine` | None | Deprecated |
+| [`3.12.7`](python/3.12.7.md) | `3.12.7` | `3.12.7-alpine` | None | Deprecated |
+| [`3.12.6`](python/3.12.6.md) | `3.12.6` | `3.12.6-alpine` | None | Deprecated |
+| [`3.12.5`](python/3.12.5.md) | `3.12.5` | `3.12.5-alpine` | None | Deprecated |
+| [`3.12.4`](python/3.12.4.md) | `3.12.4` | `3.12.4-alpine` | None | Deprecated |
+| [`3.12.3`](python/3.12.3.md) | `3.12.3` | `3.12.3-alpine` | None | Deprecated |
+| [`3.12.2`](python/3.12.2.md) | `3.12.2` | `3.12.2-alpine` | None | Deprecated |
+| [`3.12.1`](python/3.12.1.md) | `3.12.1` | `3.12.1-alpine` | None | Deprecated |
+| [`3.12.0`](python/3.12.0.md) | `3.12.0` | `3.12.0-alpine` | None | Deprecated |
+| [`3.11.15`](python/3.11.15.md) | `3.11.15` | `3.11.15-alpine` | `3.11`, `3.11-alpine` | Deprecated |
+| [`3.11.14`](python/3.11.14.md) | `3.11.14` | `3.11.14-alpine` | None | Deprecated |
+| [`3.11.13`](python/3.11.13.md) | `3.11.13` | `3.11.13-alpine` | None | Deprecated |
+| [`3.11.12`](python/3.11.12.md) | `3.11.12` | `3.11.12-alpine` | None | Deprecated |
+| [`3.11.11`](python/3.11.11.md) | `3.11.11` | `3.11.11-alpine` | None | Deprecated |
+| [`3.11.10`](python/3.11.10.md) | `3.11.10` | `3.11.10-alpine` | None | Deprecated |
+| [`3.11.9`](python/3.11.9.md) | `3.11.9` | `3.11.9-alpine` | None | Deprecated |
+| [`3.11.8`](python/3.11.8.md) | `3.11.8` | `3.11.8-alpine` | None | Deprecated |
+| [`3.11.7`](python/3.11.7.md) | `3.11.7` | `3.11.7-alpine` | None | Deprecated |
+| [`3.11.6`](python/3.11.6.md) | `3.11.6` | `3.11.6-alpine` | None | Deprecated |
+| [`3.11.5`](python/3.11.5.md) | `3.11.5` | `3.11.5-alpine` | None | Deprecated |
+| [`3.11.4`](python/3.11.4.md) | `3.11.4` | `3.11.4-alpine` | None | Deprecated |
+| [`3.11.3`](python/3.11.3.md) | `3.11.3` | `3.11.3-alpine` | None | Deprecated |
+| [`3.11.2`](python/3.11.2.md) | `3.11.2` | `3.11.2-alpine` | None | Deprecated |
+| [`3.11.1`](python/3.11.1.md) | `3.11.1` | `3.11.1-alpine` | None | Deprecated |
+| [`3.11.0`](python/3.11.0.md) | `3.11.0` | `3.11.0-alpine` | None | Deprecated |
+| [`3.10.20`](python/3.10.20.md) | `3.10.20` | `3.10.20-alpine` | `3.10`, `3.10-alpine` | Deprecated |
+| [`3.10.19`](python/3.10.19.md) | `3.10.19` | `3.10.19-alpine` | None | Deprecated |
+| [`3.10.18`](python/3.10.18.md) | `3.10.18` | `3.10.18-alpine` | None | Deprecated |
+| [`3.10.17`](python/3.10.17.md) | `3.10.17` | `3.10.17-alpine` | None | Deprecated |
+| [`3.10.16`](python/3.10.16.md) | `3.10.16` | `3.10.16-alpine` | None | Deprecated |
+| [`3.10.15`](python/3.10.15.md) | `3.10.15` | `3.10.15-alpine` | None | Deprecated |
+| [`3.10.14`](python/3.10.14.md) | `3.10.14` | `3.10.14-alpine` | None | Deprecated |
+| [`3.10.13`](python/3.10.13.md) | `3.10.13` | `3.10.13-alpine` | None | Deprecated |
+| [`3.10.12`](python/3.10.12.md) | `3.10.12` | `3.10.12-alpine` | None | Deprecated |
+| [`3.10.11`](python/3.10.11.md) | `3.10.11` | `3.10.11-alpine` | None | Deprecated |
+| [`3.10.10`](python/3.10.10.md) | `3.10.10` | `3.10.10-alpine` | None | Deprecated |
+| [`3.10.9`](python/3.10.9.md) | `3.10.9` | `3.10.9-alpine` | None | Deprecated |
+| [`3.10.8`](python/3.10.8.md) | `3.10.8` | `3.10.8-alpine` | None | Deprecated |
+| [`3.10.7`](python/3.10.7.md) | `3.10.7` | `3.10.7-alpine` | None | Deprecated |
+| [`3.10.6`](python/3.10.6.md) | `3.10.6` | `3.10.6-alpine` | None | Deprecated |
+| [`3.10.5`](python/3.10.5.md) | `3.10.5` | `3.10.5-alpine` | None | Deprecated |
+| [`3.10.4`](python/3.10.4.md) | `3.10.4` | `3.10.4-alpine` | None | Deprecated |
+| [`3.10.3`](python/3.10.3.md) | `3.10.3` | `3.10.3-alpine` | None | Deprecated |
+| [`3.10.2`](python/3.10.2.md) | `3.10.2` | `3.10.2-alpine` | None | Deprecated |
+| [`3.10.1`](python/3.10.1.md) | `3.10.1` | `3.10.1-alpine` | None | Deprecated |
+| [`3.10.0`](python/3.10.0.md) | `3.10.0` | `3.10.0-alpine` | None | Deprecated |
+| [`3.9.25`](python/3.9.25.md) | `3.9.25` | `3.9.25-alpine` | `3.9`, `3.9-alpine` | Deprecated |
+| [`3.9.24`](python/3.9.24.md) | `3.9.24` | `3.9.24-alpine` | None | Deprecated |
+| [`3.9.23`](python/3.9.23.md) | `3.9.23` | `3.9.23-alpine` | None | Deprecated |
+| [`3.9.22`](python/3.9.22.md) | `3.9.22` | `3.9.22-alpine` | None | Deprecated |
+| [`3.9.21`](python/3.9.21.md) | `3.9.21` | `3.9.21-alpine` | None | Deprecated |
+| [`3.9.20`](python/3.9.20.md) | `3.9.20` | `3.9.20-alpine` | None | Deprecated |
+| [`3.9.19`](python/3.9.19.md) | `3.9.19` | `3.9.19-alpine` | None | Deprecated |
+| [`3.9.18`](python/3.9.18.md) | `3.9.18` | `3.9.18-alpine` | None | Deprecated |
+| [`3.9.17`](python/3.9.17.md) | `3.9.17` | `3.9.17-alpine` | None | Deprecated |
+| [`3.9.16`](python/3.9.16.md) | `3.9.16` | `3.9.16-alpine` | None | Deprecated |
+| [`3.9.15`](python/3.9.15.md) | `3.9.15` | `3.9.15-alpine` | None | Deprecated |
+| [`3.9.14`](python/3.9.14.md) | `3.9.14` | `3.9.14-alpine` | None | Deprecated |
+| [`3.9.13`](python/3.9.13.md) | `3.9.13` | `3.9.13-alpine` | None | Deprecated |
+| [`3.9.12`](python/3.9.12.md) | `3.9.12` | `3.9.12-alpine` | None | Deprecated |
+| [`3.9.11`](python/3.9.11.md) | `3.9.11` | `3.9.11-alpine` | None | Deprecated |
+| [`3.9.10`](python/3.9.10.md) | `3.9.10` | `3.9.10-alpine` | None | Deprecated |
+| [`3.9.9`](python/3.9.9.md) | `3.9.9` | `3.9.9-alpine` | None | Deprecated |
+| [`3.9.8`](python/3.9.8.md) | `3.9.8` | `3.9.8-alpine` | None | Deprecated |
+| [`3.9.7`](python/3.9.7.md) | `3.9.7` | `3.9.7-alpine` | None | Deprecated |
+| [`3.9.6`](python/3.9.6.md) | `3.9.6` | `3.9.6-alpine` | None | Deprecated |
+| [`3.9.5`](python/3.9.5.md) | `3.9.5` | `3.9.5-alpine` | None | Deprecated |
+| [`3.9.4`](python/3.9.4.md) | `3.9.4` | `3.9.4-alpine` | None | Deprecated |
+| [`3.9.3`](python/3.9.3.md) | `3.9.3` | `3.9.3-alpine` | None | Deprecated |
+| [`3.9.2`](python/3.9.2.md) | `3.9.2` | `3.9.2-alpine` | None | Deprecated |
+| [`3.9.1`](python/3.9.1.md) | `3.9.1` | `3.9.1-alpine` | None | Deprecated |
+| [`3.9.0`](python/3.9.0.md) | `3.9.0` | `3.9.0-alpine` | None | Deprecated |
+| [`3.8.20`](python/3.8.20.md) | `3.8.20` | `3.8.20-alpine` | `3.8`, `3.8-alpine` | Deprecated |
+| [`3.8.19`](python/3.8.19.md) | `3.8.19` | `3.8.19-alpine` | None | Deprecated |
+| [`3.8.18`](python/3.8.18.md) | `3.8.18` | `3.8.18-alpine` | None | Deprecated |
+| [`3.8.17`](python/3.8.17.md) | `3.8.17` | `3.8.17-alpine` | None | Deprecated |
+| [`3.8.16`](python/3.8.16.md) | `3.8.16` | `3.8.16-alpine` | None | Deprecated |
+| [`3.8.15`](python/3.8.15.md) | `3.8.15` | `3.8.15-alpine` | None | Deprecated |
+| [`3.8.14`](python/3.8.14.md) | `3.8.14` | `3.8.14-alpine` | None | Deprecated |
+| [`3.8.13`](python/3.8.13.md) | `3.8.13` | `3.8.13-alpine` | None | Deprecated |
+| [`3.8.12`](python/3.8.12.md) | `3.8.12` | `3.8.12-alpine` | None | Deprecated |
+| [`3.8.11`](python/3.8.11.md) | `3.8.11` | `3.8.11-alpine` | None | Deprecated |
+| [`3.8.10`](python/3.8.10.md) | `3.8.10` | `3.8.10-alpine` | None | Deprecated |
+| [`3.8.9`](python/3.8.9.md) | `3.8.9` | `3.8.9-alpine` | None | Deprecated |
+| [`3.8.8`](python/3.8.8.md) | `3.8.8` | `3.8.8-alpine` | None | Deprecated |
+| [`3.8.7`](python/3.8.7.md) | `3.8.7` | `3.8.7-alpine` | None | Deprecated |
+| [`3.8.6`](python/3.8.6.md) | `3.8.6` | `3.8.6-alpine` | None | Deprecated |
+| [`3.8.5`](python/3.8.5.md) | `3.8.5` | `3.8.5-alpine` | None | Deprecated |
+| [`3.8.4`](python/3.8.4.md) | `3.8.4` | `3.8.4-alpine` | None | Deprecated |
+| [`3.8.3`](python/3.8.3.md) | `3.8.3` | `3.8.3-alpine` | None | Deprecated |
+| [`3.8.2`](python/3.8.2.md) | `3.8.2` | `3.8.2-alpine` | None | Deprecated |
+| [`3.8.1`](python/3.8.1.md) | `3.8.1` | `3.8.1-alpine` | None | Deprecated |
+| [`3.8.0`](python/3.8.0.md) | `3.8.0` | `3.8.0-alpine` | None | Deprecated |
+| [`3.7.17`](python/3.7.17.md) | `3.7.17` | `3.7.17-alpine` | `3.7`, `3.7-alpine` | Deprecated |
+| [`3.7.16`](python/3.7.16.md) | `3.7.16` | `3.7.16-alpine` | None | Deprecated |
+| [`3.7.15`](python/3.7.15.md) | `3.7.15` | `3.7.15-alpine` | None | Deprecated |
+| [`3.7.14`](python/3.7.14.md) | `3.7.14` | `3.7.14-alpine` | None | Deprecated |
+| [`3.7.13`](python/3.7.13.md) | `3.7.13` | `3.7.13-alpine` | None | Deprecated |
+| [`3.7.12`](python/3.7.12.md) | `3.7.12` | `3.7.12-alpine` | None | Deprecated |
+| [`3.7.11`](python/3.7.11.md) | `3.7.11` | `3.7.11-alpine` | None | Deprecated |
+| [`3.7.10`](python/3.7.10.md) | `3.7.10` | `3.7.10-alpine` | None | Deprecated |
+| [`3.7.9`](python/3.7.9.md) | `3.7.9` | `3.7.9-alpine` | None | Deprecated |
+| [`3.7.8`](python/3.7.8.md) | `3.7.8` | `3.7.8-alpine` | None | Deprecated |
+| [`3.7.7`](python/3.7.7.md) | `3.7.7` | `3.7.7-alpine` | None | Deprecated |
+| [`3.7.6`](python/3.7.6.md) | `3.7.6` | `3.7.6-alpine` | None | Deprecated |
+| [`3.7.5`](python/3.7.5.md) | `3.7.5` | `3.7.5-alpine` | None | Deprecated |
+| [`3.7.4`](python/3.7.4.md) | `3.7.4` | `3.7.4-alpine` | None | Deprecated |
+| [`3.7.3`](python/3.7.3.md) | `3.7.3` | `3.7.3-alpine` | None | Deprecated |
+| [`3.7.2`](python/3.7.2.md) | `3.7.2` | `3.7.2-alpine` | None | Deprecated |
+| [`3.7.1`](python/3.7.1.md) | `3.7.1` | `3.7.1-alpine` | None | Deprecated |
+| [`3.7.0`](python/3.7.0.md) | `3.7.0` | `3.7.0-alpine` | None | Deprecated |
+| [`3.6.15`](python/3.6.15.md) | `3.6.15` | `3.6.15-alpine` | `3.6`, `3.6-alpine` | Deprecated |
+| [`3.6.14`](python/3.6.14.md) | `3.6.14` | `3.6.14-alpine` | None | Deprecated |
+| [`3.6.13`](python/3.6.13.md) | `3.6.13` | `3.6.13-alpine` | None | Deprecated |
+| [`3.6.12`](python/3.6.12.md) | `3.6.12` | `3.6.12-alpine` | None | Deprecated |
+| [`3.6.11`](python/3.6.11.md) | `3.6.11` | `3.6.11-alpine` | None | Deprecated |
+| [`3.6.10`](python/3.6.10.md) | `3.6.10` | `3.6.10-alpine` | None | Deprecated |
+| [`3.6.9`](python/3.6.9.md) | `3.6.9` | `3.6.9-alpine` | None | Deprecated |
+| [`3.6.8`](python/3.6.8.md) | `3.6.8` | `3.6.8-alpine` | None | Deprecated |
+| [`3.6.7`](python/3.6.7.md) | `3.6.7` | `3.6.7-alpine` | None | Deprecated |
+| [`3.6.6`](python/3.6.6.md) | `3.6.6` | `3.6.6-alpine` | None | Deprecated |
+| [`3.6.5`](python/3.6.5.md) | `3.6.5` | `3.6.5-alpine` | None | Deprecated |
+| [`3.6.4`](python/3.6.4.md) | `3.6.4` | `3.6.4-alpine` | None | Deprecated |
+| [`3.6.3`](python/3.6.3.md) | `3.6.3` | `3.6.3-alpine` | None | Deprecated |
+| [`3.6.2`](python/3.6.2.md) | `3.6.2` | `3.6.2-alpine` | None | Deprecated |
+| [`3.6.1`](python/3.6.1.md) | `3.6.1` | `3.6.1-alpine` | None | Deprecated |
+| [`3.6.0`](python/3.6.0.md) | `3.6.0` | `3.6.0-alpine` | None | Deprecated |
+| [`3.5.10`](python/3.5.10.md) | `3.5.10` | `3.5.10-alpine` | `3.5`, `3.5-alpine` | Deprecated |
+| [`3.5.9`](python/3.5.9.md) | `3.5.9` | `3.5.9-alpine` | None | Deprecated |
+| [`3.5.8`](python/3.5.8.md) | `3.5.8` | `3.5.8-alpine` | None | Deprecated |
+| [`3.5.7`](python/3.5.7.md) | `3.5.7` | `3.5.7-alpine` | None | Deprecated |
+| [`3.5.6`](python/3.5.6.md) | `3.5.6` | `3.5.6-alpine` | None | Deprecated |
+| [`3.5.5`](python/3.5.5.md) | `3.5.5` | `3.5.5-alpine` | None | Deprecated |
+| [`3.5.4`](python/3.5.4.md) | `3.5.4` | `3.5.4-alpine` | None | Deprecated |
+| [`3.5.3`](python/3.5.3.md) | `3.5.3` | `3.5.3-alpine` | None | Deprecated |
+| [`3.5.2`](python/3.5.2.md) | `3.5.2` | `3.5.2-alpine` | None | Deprecated |
+| [`3.5.1`](python/3.5.1.md) | `3.5.1` | `3.5.1-alpine` | None | Deprecated |
+| [`3.5.0`](python/3.5.0.md) | `3.5.0` | `3.5.0-alpine` | None | Deprecated |
+| [`3.4.10`](python/3.4.10.md) | `3.4.10` | `3.4.10-alpine` | `3.4`, `3.4-alpine` | Deprecated |
+| [`3.4.9`](python/3.4.9.md) | `3.4.9` | `3.4.9-alpine` | None | Deprecated |
+| [`3.4.8`](python/3.4.8.md) | `3.4.8` | `3.4.8-alpine` | None | Deprecated |
+| [`3.4.7`](python/3.4.7.md) | `3.4.7` | `3.4.7-alpine` | None | Deprecated |
+| [`3.4.6`](python/3.4.6.md) | `3.4.6` | `3.4.6-alpine` | None | Deprecated |
+| [`3.4.5`](python/3.4.5.md) | `3.4.5` | `3.4.5-alpine` | None | Deprecated |
+| [`3.4.4`](python/3.4.4.md) | `3.4.4` | `3.4.4-alpine` | None | Deprecated |
+| [`3.4.3`](python/3.4.3.md) | `3.4.3` | `3.4.3-alpine` | None | Deprecated |
+| [`3.4.2`](python/3.4.2.md) | `3.4.2` | `3.4.2-alpine` | None | Deprecated |
+| [`3.4.1`](python/3.4.1.md) | `3.4.1` | `3.4.1-alpine` | None | Deprecated |
+| [`3.4.0`](python/3.4.0.md) | `3.4.0` | `3.4.0-alpine` | None | Deprecated |
+| [`3.3.7`](python/3.3.7.md) | `3.3.7` | `3.3.7-alpine` | `3.3`, `3.3-alpine` | Deprecated |
+| [`3.3.6`](python/3.3.6.md) | `3.3.6` | `3.3.6-alpine` | None | Deprecated |
+| [`3.3.5`](python/3.3.5.md) | `3.3.5` | `3.3.5-alpine` | None | Deprecated |
+| [`3.3.4`](python/3.3.4.md) | `3.3.4` | `3.3.4-alpine` | None | Deprecated |
+| [`3.3.3`](python/3.3.3.md) | `3.3.3` | `3.3.3-alpine` | None | Deprecated |
+| [`3.3.2`](python/3.3.2.md) | `3.3.2` | `3.3.2-alpine` | None | Deprecated |
+| [`3.3.1`](python/3.3.1.md) | `3.3.1` | `3.3.1-alpine` | None | Deprecated |
+| [`3.3.0`](python/3.3.0.md) | `3.3.0` | `3.3.0-alpine` | None | Deprecated |
+| [`3.2.6`](python/3.2.6.md) | `3.2.6` | `3.2.6-alpine` | `3.2`, `3.2-alpine` | Deprecated |
+| [`3.2.5`](python/3.2.5.md) | `3.2.5` | `3.2.5-alpine` | None | Deprecated |
+| [`3.2.4`](python/3.2.4.md) | `3.2.4` | `3.2.4-alpine` | None | Deprecated |
+| [`3.2.3`](python/3.2.3.md) | `3.2.3` | `3.2.3-alpine` | None | Deprecated |
+| [`3.2.2`](python/3.2.2.md) | `3.2.2` | `3.2.2-alpine` | None | Deprecated |
+| [`3.2.1`](python/3.2.1.md) | `3.2.1` | `3.2.1-alpine` | None | Deprecated |
+| [`3.1.5`](python/3.1.5.md) | `3.1.5` | `3.1.5-alpine` | `3.1`, `3.1-alpine` | Deprecated |
+| [`3.1.4`](python/3.1.4.md) | `3.1.4` | `3.1.4-alpine` | None | Deprecated |
+| [`3.1.3`](python/3.1.3.md) | `3.1.3` | `3.1.3-alpine` | None | Deprecated |
+| [`3.1.2`](python/3.1.2.md) | `3.1.2` | `3.1.2-alpine` | None | Deprecated |
+| [`3.1.1`](python/3.1.1.md) | `3.1.1` | `3.1.1-alpine` | None | Deprecated |
+| [`3.0.1`](python/3.0.1.md) | `3.0.1` | `3.0.1-alpine` | `3.0`, `3.0-alpine` | Deprecated |
+| [`2.7.18`](python/2.7.18.md) | `2.7.18` | `2.7.18-alpine` | `2.7`, `2.7-alpine` | Deprecated |
+| [`2.7.17`](python/2.7.17.md) | `2.7.17` | `2.7.17-alpine` | None | Deprecated |
+| [`2.7.16`](python/2.7.16.md) | `2.7.16` | `2.7.16-alpine` | None | Deprecated |
+| [`2.7.15`](python/2.7.15.md) | `2.7.15` | `2.7.15-alpine` | None | Deprecated |
+| [`2.7.14`](python/2.7.14.md) | `2.7.14` | `2.7.14-alpine` | None | Deprecated |
+| [`2.7.13`](python/2.7.13.md) | `2.7.13` | `2.7.13-alpine` | None | Deprecated |
+| [`2.7.12`](python/2.7.12.md) | `2.7.12` | `2.7.12-alpine` | None | Deprecated |
+| [`2.7.11`](python/2.7.11.md) | `2.7.11` | `2.7.11-alpine` | None | Deprecated |
+| [`2.7.10`](python/2.7.10.md) | `2.7.10` | `2.7.10-alpine` | None | Deprecated |
+| [`2.7.9`](python/2.7.9.md) | `2.7.9` | `2.7.9-alpine` | None | Deprecated |
+| [`2.7.8`](python/2.7.8.md) | `2.7.8` | `2.7.8-alpine` | None | Deprecated |
+| [`2.7.7`](python/2.7.7.md) | `2.7.7` | `2.7.7-alpine` | None | Deprecated |
+| [`2.7.6`](python/2.7.6.md) | `2.7.6` | `2.7.6-alpine` | None | Deprecated |
+| [`2.7.5`](python/2.7.5.md) | `2.7.5` | `2.7.5-alpine` | None | Deprecated |
+| [`2.7.4`](python/2.7.4.md) | `2.7.4` | `2.7.4-alpine` | None | Deprecated |
+| [`2.7.3`](python/2.7.3.md) | `2.7.3` | `2.7.3-alpine` | None | Deprecated |
+| [`2.7.2`](python/2.7.2.md) | `2.7.2` | `2.7.2-alpine` | None | Deprecated |
+| [`2.7.1`](python/2.7.1.md) | `2.7.1` | `2.7.1-alpine` | None | Deprecated |
+| [`2.6.9`](python/2.6.9.md) | `2.6.9` | `2.6.9-alpine` | `2.6`, `2.6-alpine` | Deprecated |
+| [`2.6.8`](python/2.6.8.md) | `2.6.8` | `2.6.8-alpine` | None | Deprecated |
+| [`2.6.7`](python/2.6.7.md) | `2.6.7` | `2.6.7-alpine` | None | Deprecated |
+| [`2.6.6`](python/2.6.6.md) | `2.6.6` | `2.6.6-alpine` | None | Deprecated |
+| [`2.6.5`](python/2.6.5.md) | `2.6.5` | `2.6.5-alpine` | None | Deprecated |
+| [`2.6.4`](python/2.6.4.md) | `2.6.4` | `2.6.4-alpine` | None | Deprecated |
+| [`2.6.3`](python/2.6.3.md) | `2.6.3` | `2.6.3-alpine` | None | Deprecated |
+| [`2.6.2`](python/2.6.2.md) | `2.6.2` | `2.6.2-alpine` | None | Deprecated |
+| [`2.6.1`](python/2.6.1.md) | `2.6.1` | `2.6.1-alpine` | None | Deprecated |
+| [`2.5.6`](python/2.5.6.md) | `2.5.6` | `2.5.6-alpine` | `2.5`, `2.5-alpine` | Deprecated |
+| [`2.5.5`](python/2.5.5.md) | `2.5.5` | `2.5.5-alpine` | None | Deprecated |
+| [`2.5.4`](python/2.5.4.md) | `2.5.4` | `2.5.4-alpine` | None | Deprecated |
+| [`2.5.3`](python/2.5.3.md) | `2.5.3` | `2.5.3-alpine` | None | Deprecated |
+| [`2.5.2`](python/2.5.2.md) | `2.5.2` | `2.5.2-alpine` | None | Deprecated |
+| [`2.5.1`](python/2.5.1.md) | `2.5.1` | `2.5.1-alpine` | None | Deprecated |
+| [`2.4.6`](python/2.4.6.md) | `2.4.6` | `2.4.6-alpine` | `2.4`, `2.4-alpine` | Deprecated |
+| [`2.4.5`](python/2.4.5.md) | `2.4.5` | `2.4.5-alpine` | None | Deprecated |
+| [`2.4.4`](python/2.4.4.md) | `2.4.4` | `2.4.4-alpine` | None | Deprecated |
+| [`2.4.3`](python/2.4.3.md) | `2.4.3` | `2.4.3-alpine` | None | Deprecated |
+| [`2.4.2`](python/2.4.2.md) | `2.4.2` | `2.4.2-alpine` | None | Deprecated |
+| [`2.4.1`](python/2.4.1.md) | `2.4.1` | `2.4.1-alpine` | None | Deprecated |
+| [`2.3.7`](python/2.3.7.md) | `2.3.7` | `2.3.7-alpine` | `2.3`, `2.3-alpine` | Deprecated |
+| [`2.3.6`](python/2.3.6.md) | `2.3.6` | `2.3.6-alpine` | None | Deprecated |
+| [`2.3.5`](python/2.3.5.md) | `2.3.5` | `2.3.5-alpine` | None | Deprecated |
+| [`2.3.4`](python/2.3.4.md) | `2.3.4` | `2.3.4-alpine` | None | Deprecated |
+| [`2.3.3`](python/2.3.3.md) | `2.3.3` | `2.3.3-alpine` | None | Deprecated |
+| [`2.3.2`](python/2.3.2.md) | `2.3.2` | `2.3.2-alpine` | None | Deprecated |
+| [`2.3.1`](python/2.3.1.md) | `2.3.1` | `2.3.1-alpine` | None | Deprecated |
+| [`2.2.3`](python/2.2.3.md) | `2.2.3` | `2.2.3-alpine` | `2.2`, `2.2-alpine` | Deprecated |
+| [`2.2.2`](python/2.2.2.md) | `2.2.2` | `2.2.2-alpine` | None | Deprecated |
+| [`2.2.1`](python/2.2.1.md) | `2.2.1` | `2.2.1-alpine` | None | Deprecated |
+| [`2.1.3`](python/2.1.3.md) | `2.1.3` | `2.1.3-alpine` | `2.1`, `2.1-alpine` | Deprecated |
+| [`2.1.2`](python/2.1.2.md) | `2.1.2` | `2.1.2-alpine` | None | Deprecated |
+| [`2.1.1`](python/2.1.1.md) | `2.1.1` | `2.1.1-alpine` | None | Deprecated |
+| [`2.0.1`](python/2.0.1.md) | `2.0.1` | `2.0.1-alpine` | `2.0`, `2.0-alpine` | Deprecated |
+| [`1.5.2`](python/1.5.2.md) | `1.5.2` | `1.5.2-alpine` | `1.5`, `1.5-alpine` | Deprecated |
+| [`1.5.1`](python/1.5.1.md) | `1.5.1` | `1.5.1-alpine` | None | Deprecated |
+| [`1.1.1`](python/1.1.1.md) | `1.1.1` | `1.1.1-alpine` | `1.1`, `1.1-alpine` | Deprecated |
+| [`1.0.2`](python/1.0.2.md) | `1.0.2` | `1.0.2-alpine` | `1.0`, `1.0-alpine` | Deprecated |
+| [`1.0.1`](python/1.0.1.md) | `1.0.1` | `1.0.1-alpine` | None | Deprecated |
+| [`0.9.9`](python/0.9.9.md) | `0.9.9` | `0.9.9-alpine` | `0.9`, `0.9-alpine` | Deprecated |
+| [`0.9.8`](python/0.9.8.md) | `0.9.8` | `0.9.8-alpine` | None | Deprecated |
 
 ## Version Sources
 
