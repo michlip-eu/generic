@@ -75,13 +75,11 @@ jobs:
           git commit -m "Update Go versions and docs [skip ci]"
           .github/scripts/push-generated-changes.sh
 
-
   build-full:
     name: Build Go full images
     needs: versions
     strategy:
       fail-fast: false
-      max-parallel: 1
       matrix:
         include: ${{ fromJson(needs.versions.outputs['full-batches']) }}
     uses: ./.github/workflows/build-runtime.yml
@@ -96,7 +94,6 @@ jobs:
     needs: versions
     strategy:
       fail-fast: false
-      max-parallel: 1
       matrix:
         include: ${{ fromJson(needs.versions.outputs['alpine-batches']) }}
     uses: ./.github/workflows/build-runtime.yml
