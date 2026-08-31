@@ -2,7 +2,7 @@
 
 # Golang Docker Images
 
-Last generated: 2026-08-24
+Last generated: 2026-08-31
 
 Images are published to:
 
@@ -65,7 +65,7 @@ lines. See the official policy at <https://go.dev/doc/devel/release#policy>.
 | Superseded | Older patch in a supported release line. The image exists for reproducibility, but new builds should move to that line's newest patch. |
 | Deprecated | Release line is no longer supported by the Go project. Keep only for legacy rebuilds. |
 
-As of 2026-08-24, the supported Go lines in this repository are
+As of 2026-08-31, the supported Go lines in this repository are
 `1.27` and `1.26`. Older lines are deprecated.
 
 ## Published Versions
