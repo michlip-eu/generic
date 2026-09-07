@@ -2,7 +2,7 @@
 
 # Golang Docker Images
 
-Last generated: 2026-08-31
+Last generated: 2026-09-07
 
 Images are published to:
 
@@ -20,8 +20,8 @@ The workflow builds every pinned Go version for both `linux/amd64` and
 
 | Variant | Base image | Tags | Contents |
 | --- | --- | --- | --- |
-| `full` | `debian:bookworm-slim` | `latest`, `1.27`, `1.27.0` | Go plus common build tools: Git, SSH client, C/C++ compilers, Make, curl, and pkg-config. |
-| `alpine` | `alpine:latest` | `latest-alpine`, `1.27-alpine`, `1.27.0-alpine` | Smaller Alpine image with Go and the minimum install/download tooling. |
+| `full` | `debian:bookworm-slim` | `latest`, `1.27`, `1.27.1` | Go plus common build tools: Git, SSH client, C/C++ compilers, Make, curl, and pkg-config. |
+| `alpine` | `alpine:latest` | `latest-alpine`, `1.27-alpine`, `1.27.1-alpine` | Smaller Alpine image with Go and the minimum install/download tooling. |
 
 ## Tag Rules
 
@@ -65,15 +65,17 @@ lines. See the official policy at <https://go.dev/doc/devel/release#policy>.
 | Superseded | Older patch in a supported release line. The image exists for reproducibility, but new builds should move to that line's newest patch. |
 | Deprecated | Release line is no longer supported by the Go project. Keep only for legacy rebuilds. |
 
-As of 2026-08-31, the supported Go lines in this repository are
+As of 2026-09-07, the supported Go lines in this repository are
 `1.27` and `1.26`. Older lines are deprecated.
 
 ## Published Versions
 
 | Go version | Full image tag | Alpine image tag | Alias tags | Status |
 | --- | --- | --- | --- | --- |
-| [`1.27.0`](golang/1.27.0.md) | `1.27.0` | `1.27.0-alpine` | `latest`, `latest-alpine`, `1.27`, `1.27-alpine` | Current |
-| [`1.26.7`](golang/1.26.7.md) | `1.26.7` | `1.26.7-alpine` | `1.26`, `1.26-alpine` | Supported |
+| [`1.27.1`](golang/1.27.1.md) | `1.27.1` | `1.27.1-alpine` | `latest`, `latest-alpine`, `1.27`, `1.27-alpine` | Current |
+| [`1.26.8`](golang/1.26.8.md) | `1.26.8` | `1.26.8-alpine` | `1.26`, `1.26-alpine` | Supported |
+| [`1.27.0`](golang/1.27.0.md) | `1.27.0` | `1.27.0-alpine` | None | Superseded |
+| [`1.26.7`](golang/1.26.7.md) | `1.26.7` | `1.26.7-alpine` | None | Superseded |
 | [`1.26.6`](golang/1.26.6.md) | `1.26.6` | `1.26.6-alpine` | None | Superseded |
 | [`1.26.5`](golang/1.26.5.md) | `1.26.5` | `1.26.5-alpine` | None | Superseded |
 | [`1.26.4`](golang/1.26.4.md) | `1.26.4` | `1.26.4-alpine` | None | Superseded |
